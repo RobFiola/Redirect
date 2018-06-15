@@ -1,9 +1,27 @@
 <!DOCTYPE html>
 <html>
 <head>
-<!--    <script src="java.js"></script>-->
-    <meta http-equiv="refresh" content="0; URL='https://amazon.com'" />
+    <script src="java.js"></script>
+<!--    <meta http-equiv="refresh" content="0; URL='https://amazon.com'" />-->
 </head>
 <body>
+<script language="JavaScript" src="http://j.maxmind.com/app/geoip.js"></script>
+
+<br>Country Code:
+<script language="JavaScript">document.write(geoip_country_code());</script>
+<br>Country Name:
+<script language="JavaScript">document.write(geoip_country_name());</script>
+<br>City:
+<script language="JavaScript">document.write(geoip_city());</script>
+<br>Region:
+<script language="JavaScript">document.write(geoip_region());</script>
+<br>Region Name:
+<script language="JavaScript">document.write(geoip_region_name());</script>
+<br>Latitude:
+<script language="JavaScript">document.write(geoip_latitude());</script>
+<br>Longitude:
+<script language="JavaScript">document.write(geoip_longitude());</script>
+<br>Postal Code:
+<script language="JavaScript">document.write(geoip_postal_code());</script>
 </body>
 </html>
