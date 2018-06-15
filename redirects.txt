@@ -1,0 +1,6 @@
+{
+    "armband_running":{
+        "id": "12345",
+        "super": "https://amazon.com"
+    }
+}

@@ -1,6 +1,7 @@
 {
-    armband-running:{
+    "armband98d":{
         "id": "12345",
-        "super": "https://amazon.com"
+        "super": "https://amazon.com",
+        "keyword": "armband"
     }
 }
