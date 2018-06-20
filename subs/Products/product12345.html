@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<!--    <meta http-equiv="refresh" content="0; URL='https://amazon.com'" />-->
+    <script>
+        var product=getQueryVariable('product');
+            console.log('product: '+product);
+        var asin=getQueryVariable('asin');
+            console.log('asin: '+asin);
+        var country=getQueryVariable('country');
+            console.log('country: '+country);
+        
+        var link = "https://www.amazon.com";
+        alert('redirect to :'+link);
+        //window.open(link,"_self");
+        function getQueryVariable(variable)//country
+        {    
+            var output;
+            var query=window.location.search.substring(1);
+            var vars=query.split('&');
+            for (var i=0;i<vars.length;i++){
+                var pair=vars[i].split('=');
+                if(pair[0]==variable){output=pair[1];}
+            }
+            return output;
+        }
+    </script>
+</head>
+<body></body>
+</html>

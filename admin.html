@@ -1,0 +1,55 @@
+<?php
+    session_start();
+    if(!isset($_SESSION['login'])) {
+        header('LOCATION:login.php'); die();
+    }
+?>
+<!DOCTYPE html>
+<html>
+<head>
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="src/java.js"></script>
+<link rel="stylesheet" type="text/css" href="src/styles.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+
+
+</head>
+<body>
+    
+    <div class="banner">
+        <button class="add" onclick="addItem()">Add</button>
+        <button class="save" onclick="save()">Save</button>
+        <button class="download" onclick="download()">View Source</button>
+        <div class="title">Redirect</div>
+        <table>
+            <tr>
+                <th class="num">#</th>
+                <th class="more"></th>
+                <th>ROOT URL</th>
+                <th>ProductSKU</th>
+                <th>Keyword</th>
+                <th>Redirect To</th>
+                <th class="delete"><i class="fa fa-trash-alt"></i></th>
+            </tr>
+        </table>
+    </div>
+    <div class="topbuffer"></div>
+    <table id='tables'>
+        
+        <tr id='0'>
+            <td class="num">0</td>
+            <td class="more" onclick="more(this.parentElement.id)"><i class="fa fa-arrow-right"></i></td>
+            <td ><input type="text" value="" data-field="root" placeholder="Insert Root URL"></td>
+            <td ><input type="text" value="" maxlength="15" data-field="asin"></td>
+            <td ><input type="text" value='' data-field="keyword"></td>
+            <td ><input  value="" data-field="link"></td>
+            <td class='delete' onclick="deleteItem(this.parentElement)">X</td>
+
+
+        </tr>
+
+    </table>
+    
+    
+</body>
+</html>

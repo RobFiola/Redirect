@@ -1,0 +1,55 @@
+label{
+    border: solid 1px black;
+    padding: 2px;
+    margin: 0;
+    
+}
+div{
+    margin: 0;
+}
+table{
+    width:95%;
+    margin: auto;
+}
+td{
+    border-top: solid 1px gray;
+}
+
+.banner{
+    width:100%;
+    margin: 0;
+    padding: 5px;
+    position: fixed;
+    top:0;
+    left:auto;
+    background-color:gray;
+    
+}
+.num{
+    width: 20px;
+    text-align: center;
+}
+.delete{
+    text-align: center;
+    font-style: oblique;
+    width: 10px;
+}
+.delete:hover{
+    cursor: pointer;
+    text-shadow: 0 0 1px gray;
+}
+.topbuffer{
+    margin-top:70px;
+}
+.title{
+    width:100%;
+    display: inline-block;
+    font-family: monospace;
+    font-size: 1.5em;
+    align-content: center;
+    text-align: center;
+}
+.more{
+    width="10px;";
+    cursor: pointer;
+}

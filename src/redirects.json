@@ -1,0 +1,29 @@
+{    "armband98d":{
+        "root": "armband98d.opendoordeals.com",
+        "asin": "12345",
+        "link": "https://amazon.com",
+        "keyword": "armband",
+        "users": [
+            "Robert",
+            "Brady"
+        ]
+    },
+    "armband-sleeve":{
+        "root": "armband-sleeve.opendoordeals.com",
+        "asin": "12346",
+        "link": "https://amazon.com",
+        "keyword": "running-armband",
+        "users":[
+            "Justin"
+        ]
+    },
+    "armband10c":{
+        "root": "armband10c.opendoordeals.com",
+        "asin": "12347",
+        "link": "https://amazon.com",
+        "keyword": "sleeve",
+        "users": [
+            "Nate"
+        ]
+    }
+}
