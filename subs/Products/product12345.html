@@ -1,17 +1,43 @@
 <!DOCTYPE html>
 <html>
 <head>
-<!--    <meta http-equiv="refresh" content="0; URL='https://amazon.com'" />-->
+<!--    <meta http-equiv="refresh" content="0; URL='https://amazon.com/s/ref=nb_sb_noss2?url=search-alias&field-keywords=armband&field-asin=98d'" />-->
+    
+</head>
+<body>
+    <a id="link" href="#">Continue</a>
+    
     <script>
-        var product=getQueryVariable('product');
-            console.log('product: '+product);
+        var keywords=getQueryVariable('keywords');
+            console.log('keywords: '+keywords);
         var asin=getQueryVariable('asin');
             console.log('asin: '+asin);
         var country=getQueryVariable('country');
             console.log('country: '+country);
         
+        keywords=stringKeywords(keywords);
         var link = "https://www.amazon.com";
-        alert('redirect to :'+link);
+        if(keywords!=undefined && asin!=undefined)
+            link+="/s/ref=nb_sb_noss2?";
+        
+        if(keywords!=undefined)
+            link+="url=search-alias&field-keywords="+keywords;
+        if(asin!=undefined)
+            link+="&field-asin="+asin;
+        alert('redirect to: '+link);
+        
+        updateLink(link);// only use one of two
+        //redirect(link);// updateLink(for debugging) or redirect(for execution)
+        //console.log(window.location.hostname);
+        //console.log(window.location.pathname);
+        function redirect(a){
+            window.location.assign(a);
+        }
+        
+        function updateLink(a){
+            document.getElementById('link').setAttribute('href',link);
+        }
+        
         //window.open(link,"_self");
         function getQueryVariable(variable)//country
         {    
@@ -24,7 +50,10 @@
             }
             return output;
         }
+        function stringKeywords(string){
+            //add '+' between each word
+            return string;
+        }
     </script>
-</head>
-<body></body>
+</body>
 </html>

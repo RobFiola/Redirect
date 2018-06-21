@@ -1,29 +1,65 @@
-{    "armband98d":{
-        "root": "armband98d.opendoordeals.com",
-        "asin": "12345",
-        "link": "https://amazon.com",
-        "keyword": "armband",
-        "users": [
-            "Robert",
-            "Brady"
-        ]
-    },
-    "armband-sleeve":{
-        "root": "armband-sleeve.opendoordeals.com",
-        "asin": "12346",
-        "link": "https://amazon.com",
-        "keyword": "running-armband",
-        "users":[
-            "Justin"
-        ]
-    },
-    "armband10c":{
-        "root": "armband10c.opendoordeals.com",
-        "asin": "12347",
-        "link": "https://amazon.com",
-        "keyword": "sleeve",
-        "users": [
-            "Nate"
-        ]
-    }
-}
+[
+     {
+            "asin": "B01ENN5NOC",
+            "url": "https://www.amazon.com/Sports-Armband-Exercise-Running-Workout/dp/B01ENN5NOC/ref=sr_1_3",
+            "root": [
+                {
+                    "name": "NOC1",
+                    "path": "NOC1.opendoordeals.com",
+                    "keywords": [
+                                    {
+                                        "name":"cellphone+armband",
+                                        "link":"https://amazon.com",
+                                        "clicks":0
+
+                                    },
+                                    {
+                                        "name":"running+armband",
+                                        "link":"https://amazon.com",
+                                        "clicks":0
+
+                                    },
+                                ],
+                    "users": [
+                            "Robert",
+                            "Brady"
+                            ]
+                }
+                   
+
+            
+            ]
+        },
+   {
+            "asin": "B01ENN5NOC",
+            "url": "https://www.amazon.com/Sports-Armband-Exercise-Running-Workout/dp/B01ENN5NOC/ref=sr_1_3",
+            "root": [
+                {
+                    "name": "NOC1",
+                    "path": "NOC1.opendoordeals.com",
+                    "keywords": [
+                                    {
+                                        "name":"cellphone+armband",
+                                        "link":"https://amazon.com",
+                                        "clicks":0
+
+                                    },
+                                    {
+                                        "name":"running+armband",
+                                        "link":"https://amazon.com",
+                                        "clicks":0
+
+                                    },
+                                ],
+                    "users": [
+                            "Robert",
+                            "Brady"
+                            ]
+                }
+                   
+
+            
+            ]
+        }
+    
+]
