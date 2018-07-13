@@ -17,39 +17,131 @@
 <body>
     
     <div class="banner">
-        <button class="add" onclick="addItem()">Add</button>
-        <button class="save" onclick="save()">Save</button>
-        <button class="download" onclick="download()">View Source</button>
-        <div class="title">Redirect</div>
-        <table>
-            <tr>
-                <th class="num">#</th>
-                <th class="more"></th>
-                <th>ROOT URL</th>
-                <th>ProductSKU</th>
-                <th>Keyword</th>
-                <th>Redirect To</th>
-                <th class="delete"><i class="fa fa-trash-alt"></i></th>
-            </tr>
-        </table>
+       <div class="btn-group">
+            <button class="button" onclick="addItem()">Add</button>
+            <button class="button" onclick="save()">Save</button>
+            <button class="button" onclick="download()">View Source</button>
+        </div>
+        <div class="title">Re-url</div>
     </div>
     <div class="topbuffer"></div>
     <table id='tables'>
-        
-        <tr id='0'>
+        <thead>
+                <th class="num"><i class="fa fa-hashtag"></i></th>
+                <th>Info</th>
+                <th>ROOT Subdomain</th>
+                <th>Product SKU</th>
+                <th>Keyword</th>
+                <th>Redirect To</th>
+                <th ><i class="fa fa-trash-alt"></i></th>
+                
+            
+            </thead>
+        <tbody>
+        <tr id='0' data-asin="0" data-root='0' data-keyword='0'  >
             <td class="num">0</td>
-            <td class="more" onclick="more(this.parentElement.id)"><i class="fa fa-arrow-right"></i></td>
-            <td ><input type="text" value="" data-field="root" placeholder="Insert Root URL"></td>
-            <td ><input type="text" value="" maxlength="15" data-field="asin"></td>
-            <td ><input type="text" value='' data-field="keyword"></td>
-            <td ><input  value="" data-field="link"></td>
-            <td class='delete' onclick="deleteItem(this.parentElement)">X</td>
+            <td class="more button" onclick="more(this.parentElement.id)"><i class="fa fa-arrow-right"></i></td>
+            <td onclick="more(this.parentElement.id)"><label type="text" value="" data-field="root" placeholder="Insert Root Subdomain"></label></td>
+            <td ><label type="text" value="" maxlength="15" data-field="asin" placeholder="Insert ASIN"></label></td>
+            <td onclick="more(this.parentElement.id)" ><label type="text" value='' data-field="keyword" placeholder="Insert Keyword"></label></td>
+            <td ><label  type="text" value="" data-field="link"></label></td>
+            <td class='delete button' onclick="deleteItem(this.parentElement)"><i class="fa fa-times"></i></td>
+            <td class="save button Hide" onclick="saveRow(this.parentElement)"><i class="fa fa-check"></i></td>
 
 
-        </tr>
+        </tr></tbody>
 
     </table>
-    
-    
+    <div id="modal" class="modal Hide" data-asin="0" data-root="0">
+      <div class="modal-background" onclick="closeModal()"></div>
+       <div class="container" >
+        <div class="close" onclick="closeModal()"><i class="fa fa-times-circle"></i></div>
+            <table data-asin="" data-root="" data-keyword="">
+              <tr>
+                    <td>
+                        ASIN
+                    </td><td></td>
+                    <td >
+                        <input type="text" id="modal-asin" data-field="asin">
+                    </td>
+                    
+                </tr>
+                <tr>
+                    <td>
+                        Root Subdomain
+                    </td><td></td>
+                    <td >
+                        <input type="text" id="modal-root" data-field="root">
+                    </td>
+                    
+                </tr>
+                
+               <tr>
+                    <td >
+                        Redirects To
+                    </td><td></td>
+                    <td>
+                        <input  id='modal-redirect' type="text" value="" data-field="link">
+                    </td>
+                    
+                </tr>
+                <tr>
+                    <td>
+                        Clicks
+                    </td><td></td>
+                    <td>
+                        <input id='modal-clicks' type="text" value="" data-field="clicks">
+                    </td>
+                    
+                </tr>
+                <tr>
+                    <td>
+                        Max Clicks
+                    </td><td></td>
+                    <td>
+                        <input id='modal-max' type="text" value="" data-field="max">
+                    </td>
+                    
+                </tr>
+                <tr>
+                    <td>
+                        Users
+                    </td>
+                    <td></td>
+                    <td>
+                        <input id='modal-users' type="text" value="" data-field="users">
+                    </td>
+                    
+                </tr>
+                <tr>
+                    <td class="top center">
+                        Keywords
+                    </td>
+                    <td onclick="addKeyword()" class="top"><i class="fa fa-plus button" ></i></td>
+                    <td>
+                        <table id="modal-keyword" data-field="keyword">
+                           <tr data-keyword='0'>
+                           <td class='remove' onclick="removeKeyword(this.parentElement.dataset.keyword)"><i class='fa fa-minus button'></i></td>
+                           <td>
+                               <input type='text' value=''  placeholder='enter keyword' >
+                            </td></tr>
+                            <!-- ... -->
+                        </table>
+                        
+                    </td>
+                </tr>
+                <tr class="modal-buttons">
+                    <td class="btn-group">
+                        <button id='modal-update'  onclick="update()" class="button4">Update</button>
+                    
+                        <button id='modal-cancel'  onclick="closeModal()" class="button4">Cancel</button>
+                    </td>
+                    
+                </tr>
+                
+                
+            </table>
+        </div></div>
+    <div id="status" class="status Hide">hello</div>
 </body>
 </html>

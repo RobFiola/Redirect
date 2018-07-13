@@ -9,21 +9,22 @@
                     "keywords": [
                                     {
                                         "name":"cellphone+armband",
-                                        "link":"https://amazon.com",
-                                        "clicks":0
+                                        "link":"https://amazon.com"
 
                                     },
                                     {
                                         "name":"running+armband",
-                                        "link":"https://amazon.com",
-                                        "clicks":0
+                                        "link":"https://amazon.com"
+                                    
 
-                                    },
+                                    }
                                 ],
                     "users": [
                             "Robert",
                             "Brady"
-                            ]
+                            ],
+                    "clicks":0,
+                    "max_clicks":10
                 },
                 {
                     "name": "NOC2",
@@ -31,26 +32,30 @@
                     "keywords": [
                                     {
                                         "name":"cellphone+armband",
-                                        "link":"https://amazon.com",
-                                        "clicks":0
+                                        "link":"https://amazon.com"
 
                                     },
                                     {
                                         "name":"running+armband",
-                                        "link":"https://amazon.com",
-                                        "clicks":0
+                                        "link":"https://amazon.com"
 
-                                    },
+                                    }
                                 ],
                     "users": [
                             "Justin"                            
-                            ]
+                            ],
+                    "clicks":0,
+                    "max_clicks":10
                 }
+                
+                
+                
                    
 
             
             ]
-        },
+        
+     },
    {
             "asin": "B01692ZJYY",
             "url": "https://www.amazon.com/Cell-Phone-Armband-Sweatproof-Protective/dp/B01692ZJYY",
@@ -61,25 +66,27 @@
                     "keywords": [
                                     {
                                         "name":"cellphone+armband",
-                                        "link":"https://amazon.com",
-                                        "clicks":0
+                                        "link":"https://amazon.com"
 
                                     },
                                     {
                                         "name":"running+armband",
-                                        "link":"https://amazon.com",
-                                        "clicks":0
+                                        "link":"https://amazon.com"
 
-                                    },
+                                    }
                                 ],
                     "users": [
-                            "JR"
-                            ]
+                            "JR",
+                        "Keith"
+                            ],
+                    "clicks":0,
+                    "max_clicks":10
                 }
                    
 
             
             ]
-        }
+   
+       }
     
 ]

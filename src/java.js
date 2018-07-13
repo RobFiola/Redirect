@@ -1,18 +1,31 @@
+
+var document=window.document;
 var myJSON=null;
 var xmlhttp=null;
-var data=[{
-        "root": "",
-        "asin": "",
-        "link": "",
-        "keyword": "",
-        "users": []
-        }];
-//var input;
 
-/*Grab all data from json file and display in table*/
+function ASIN(asin, root="", keyword=""){
+    this.asin= asin;
+    this.url= "";
+    this.root= [new Root(root,keyword)];
+    this.createURL=function(asin, root, keyword){
+       return "amazon.com?asin="+asin+"&keyword"+keyword; 
+    };
+}
+function Root(name="",keyword=""){
+    this.name=name;
+    this.path="";
+    this.keywords=[new Keyword(keyword)];
+    this.users=[];
+    this.clicks=0;
+    this.max_clicks=0;        
+}
+function Keyword(name=""){
+    this.name=name;
+    this.link="";
+}
+var data=[];
+//Grab all data from json file and display in table
 openJSON();
-
-
 
 //update html redirect files (php)
 //str_replace("I want to replace this", "with this");
@@ -25,42 +38,47 @@ $(function() {
 
 /*add listeners to all editable items*/
 function listeners(){
-    var table=document.getElementById('tables');
-    var currentRow=table.firstElementChild.firstElementChild;
     
-    
-    while(currentRow){
-        var currentCell=currentRow.firstElementChild;
-        
-        while(currentCell){
-            currentCell.firstChild.addEventListener("change", function(e){
-                var field=e.srcElement.dataset.field;
-                var text=e.srcElement.value;
-                var id=e.srcElement.parentElement.parentElement.id;
-                switch (field){
-                    case 'root':
-                        data[id].root=text;
-                        break;
-                    case 'asin':
-                        data[id].asin=text;
-                        break;
-                    case 'keyword':
-                        data[id].keyword=text;
-                        break;
-                    case 'link':
-                        data[id].link=text;
-                        break;
-                }
-                
-            });
-                currentCell=currentCell.nextElementSibling;
-            
-        }
-        
-        currentRow=currentRow.nextElementSibling;
-    }
 }
-
+function update(e){
+    var modal=document.getElementById('modal');
+    var asin=modal.dataset.asin;
+    var root=modal.dataset.root;
+    //update data
+    data[asin].asin=document.getElementById('modal-asin').value;
+    
+    data[asin].root[root].name=document.getElementById('modal-root').value;
+    var keywords=document.getElementById('modal-keyword');
+    var line=keywords.firstElementChild.firstElementChild;
+    var numKeywords= parseInt(keywords.firstElementChild.lastElementChild.dataset.keyword)+1;
+    var keywordsArray=data[asin].root[root].keywords;
+    
+    for (var i=0;i<numKeywords;i++){
+        var input= line.lastElementChild.firstElementChild.value;
+        //if empty
+        log(input);
+        if(input!=""){
+        if(i>keywordsArray.length)//new keyword
+            {data[asin].root[root].keywords.push(new Keyword(input));
+            }
+        else//change name
+            {data[asin].root[root].keywords[i].name=input;
+            }
+        }
+        line=line.nextElementSibling;
+    }
+    //>>keywords
+    data[asin].root[root].keywords[0].link=document.getElementById('modal-redirect').value;
+    data[asin].root[root].keywords[0].clicks=document.getElementById('modal-clicks').value;
+     data[asin].root[root].keywords[0].max_clicks=document.getElementById('modal-max').value;
+     
+    //>>users array
+    var users=document.getElementById('modal-users').value.split(',');
+    
+    data[asin].root[root].keywords[0].users=users;
+    log(data);
+    hide(document.getElementById('modal'));
+}
 /*read JSON file and save to data*/
 function openJSON(){
     xmlhttp = new XMLHttpRequest();
@@ -84,7 +102,7 @@ function openJSON(){
 /*save to JSON file*/
 //update html redirect files
 function save(){
-    alert('save');
+    status("Data Saved Successfully" , 2);
     console.log(data);
     var json = JSON.stringify(data);
     var fs = require('fs');
@@ -92,10 +110,14 @@ function save(){
     // step 2: convert data structure to JSON
     //$.post("src/json.php", {json : JSON.stringify(data)});
 }
+function saveRow(item){
+    //***//
+    hide(item.lastElementChild);
+    show(item.lastElementChild.previousElementSibling)
+}
 
 /*push content to array*/
-function sortData(input)
-{    
+function sortData(input){    
     data = [];
     for (var key in input) {
       if (input.hasOwnProperty(key)) {
@@ -108,104 +130,160 @@ function sortData(input)
 }
 
 /*display data in table*/
-function showData()
-{
+function showData(){
+    var row=0;//# of rows
     tableRow=document.getElementById('0');
+    //ASINS
     for(var i=0;i<data.length;i++){
-        newRow(i, data[i]);
+        //console.log("i="+i);
+        var obj=data[i];
+        //SUBDOMAINS
+        for(var j=0;j<obj.root.length;j++){
+            //new line for each subdomain
+            //console.log("j="+j);
+            
+            
+                newRow(row);
+
+               var parent= document.getElementById(row); 
+            parent.dataset.asin=i;    
+            parent.dataset.root=j;
+                var sibling= parent.firstElementChild.nextElementSibling.nextElementSibling;
+
+                sibling.firstElementChild.innerHTML=obj.root[j].name;
+                sibling=sibling.nextElementSibling;
+                sibling.firstElementChild.innerHTML=obj.asin;
+                sibling=sibling.nextElementSibling;
+                sibling.firstElementChild.innerHTML=obj.root[j].keywords[0].name;
+                sibling=sibling.nextElementSibling;
+                sibling.firstElementChild.innerHTML=obj.root[j].keywords[0].link;
+                
+                row++;
+            
+        }
     
     }
+    
+/*
+            var options = ["1", "2", "3", "4", "5"];
+            $('#select').empty();
+            $.each(options, function(i, p) {
+                $('#select').append($('<option></option>').val(p).html(p));
+            });
+*/
     
 }
 
 /*create new item and display on table*/
-function addItem()
-{
-    var item;
-//    console.log(i);
-//    alert('add item '+i);
-    item={
-        "":{
-            "root": "",
-            "asin": "",
-            "link": "",
-            "keyword": "",
-            "users":[]
+function addItem(){
+    var asin = prompt("Please enter your product ASIN");
+    //console.log(asin);
+    if (asin !== null && asin != "") {
+        var item;
+    //    console.log(i);
+    //    alert('add item '+i);
+        var found=-1;
+        for (var i=0;i<data.length;i++){
+            if(data[i].asin==asin)
+                {
+                    found=i;
+                }
         }
-    };
-    data.push(item);
-    newRow(data.length, data[data.length-1]);
-    console.log(data);
+        if(found==-1){
+            data.push(item=new ASIN(asin));
+            var row=newRow(data.length, data[data.length-1]);
+                     }
+
+        else{
+            data[found].root.push(item=new Root());
+            var row=newRow(data.length, data[data.length-1]);
+        }
+
+        //document.getElementById(data.length);
+        console.log(data);
+    }
 }
 
 /*duplicate a new Row*/
-function newRow(i, obj){
+function newRow(i){
     var original=document.getElementById('0');
         //console.log(original);
-    var item;
+    var row;
         if(i==0)
-            item=original;
+            row=original;
         else
-            item=original.cloneNode(true);
+            row=original.cloneNode(true);
 //console.log(item);
-        item.id=i;
-        var sibling=item.firstElementChild;
-        sibling.innerHTML=parseInt(i)+1;
-        sibling=sibling.nextElementSibling.nextElementSibling;
-        //sibling.id='root'+i;
-        sibling.firstElementChild.value=obj.root;
+        nameElements(row, i);
+        var sibling=row.firstElementChild; sibling=sibling.nextElementSibling.nextElementSibling;
+        sibling.firstElementChild.value="";
         sibling=sibling.nextElementSibling;
-        //sibling.id='label'+i;
-        sibling.firstElementChild.value=obj.asin;
+        sibling.firstElementChild.value="";
         sibling=sibling.nextElementSibling;
-        //sibling.id='keyword'+i;
-        sibling.firstElementChild.value=obj.keyword;
+        sibling.firstElementChild.value="";
         sibling=sibling.nextElementSibling;
-        //sibling.id='super'+i;
-        sibling.firstElementChild.value=obj.link;
-        sibling=sibling.nextElementSibling;
-        //sibling.id='delete'+i;
-    original.parentElement.appendChild(item);
+        sibling.firstElementChild.value="";
+    
+        
+    original.parentElement.appendChild(row);
+    return row;
+    
 }
 /**/
 function nameElements (item, i){
         item.id=i;
         var sibling=item.firstElementChild;
         sibling.innerHTML=parseInt(i)+1;
-       /* sibling=sibling.nextElementSibling.nextElementSibling;
-        sibling.id='root'+i;
-        sibling=sibling.nextElementSibling;
-        sibling.id='label'+i;
-        sibling=sibling.nextElementSibling;
-        sibling.id='keyword'+i;
-        sibling=sibling.nextElementSibling;
-        sibling.id='super'+i;
-        sibling=sibling.nextElementSibling;
-        sibling.id='delete'+i;*/
 }
 
 /*remove item from table and data*/
-function deleteItem(item)
-{
+function deleteItem(item){
     var i=parseInt(item.id);
-    //add functionality to delete item
-//    console.log(item);
-    alert('are you sure you would like to delete item #'+(i+1));
-    document.getElementById("tables").deleteRow(i-1);
-    data.splice(i,1);
-//    console.log(data);
-    var element
-    if(i!=0){        element=document.getElementById('0');}
-    else {element=document.getElementById('1');}
-//    console.log(element);
-    if(element){
-        var x=0;
-        while(element && element.hasChildNodes){
-        nameElements(element,x); 
-            
-        element=element.nextElementSibling;
-            x++;
+    var conf=confirm('are you sure you would like to delete item #'+(i+1));
+    if(conf){
+        var asin=item.dataset.asin;
+        var root=item.dataset.root;
+        //add functionality to delete item
+    //    console.log(item);
+        var numRows= document.getElementById('tables').lastElementChild.lastElementChild.id;
+        if(numRows>0)
+        {
+
+            if(data[asin].root.length>1)
+            {
+                data[asin].root.splice(root,1);
+            }
+            else
+            {
+                data.splice(asin,1);
+            }
+    //       if(i!=0){        element=document.getElementById('0');}
+    //   else {
+    //        element=document.getElementById('1');}
+            element=document.getElementById('0');
+    //    console.log(element);
+        if(element){
+            var x=0;
+            while(element && element.hasChildNodes){
+                if(x==i)
+                    element=element.nextElementSibling;
+                if(element){
+                    nameElements(element,x); 
+
+
+            element=element.nextElementSibling;}
+                x++;
+            }
         }
+            document.getElementById("tables").deleteRow(i+1);
+        }
+        else{
+            status('Cannot Delete Last Item',1);
+        }
+    //    console.log(data);
+
+
+        console.log(data);
     }
 }
 
@@ -217,8 +295,136 @@ function download(){
 
 //show more details about item
 function more(i){
-   alert("Show more details about item "+i); 
+   //alert("Show more details about item "+i);
+    var obj=document.getElementById(i);
+    var asin=obj.dataset.asin;
+    var root=obj.dataset.root;
+    var keyword=obj.dataset.keyword;
+    modal(asin,root);
 }
+
+function modal(asin,root,keyword){
+    var modal=document.getElementById('modal');
+    modal.classList.remove("Hide");
+    modal.dataset.asin=asin;
+    modal.dataset.root=root;
+    document.getElementById('modal-asin').value=        data[asin].asin;
+    document.getElementById('modal-root').value=    data[asin].root[root].name;
+    var base=document.getElementById('modal-keyword');
+    //first row
+    var row=base.firstElementChild.firstElementChild.cloneNode(true);
+    
+    base.firstElementChild.innerHTML="";
+    base.firstElementChild.append(row);
+    for(var i=0;i<data[asin].root[root].keywords.length;i++)
+    {
+        row=newKeywordRow(data[asin].root[root].keywords[i].name,i);
+       if(i==0){
+            base.firstElementChild.removeChild(base.firstElementChild.firstElementChild);
+        } 
+        
+            base.firstElementChild.append(row);
+        
+            
+    }
+    document.getElementById('modal-redirect').value=    data[asin].url;
+    
+    document.getElementById('modal-clicks').value=    data[asin].root[root].clicks;
+   
+    document.getElementById('modal-max').value=    data[asin].root[root].max_clicks;
+    //make list of users
+    
+    var usersArr= data[asin].root[root].users
+    var users="";
+   for(var i=0;i<usersArr.length;i++)
+       {
+           
+           users+=usersArr[i];
+           if(i!=usersArr.length-1)
+               {users+=", ";}
+       }
+    document.getElementById('modal-users').value=users;
+}
+
+
+function closeModal(){
+    document.getElementById('modal').classList.add("Hide");
+}
+
+//
+function addKeyword(){
+    var element=document.getElementById('modal');
+    var asin=element.dataset.asin;
+    var root=element.dataset.root;
+    var num=data[asin].root[root].keywords.length;
+    var keyword=new Keyword("");
+    document.getElementById('modal-keyword').firstElementChild.append( newKeywordRow(keyword.name,num));
+    data[asin].root[root].keywords.push(keyword);
+}
+
+//input=text , i=index
+function newKeywordRow(input="",i=-1){
+    if(i!=-1){
+        var base=document.getElementById('modal-keyword');
+        var original= base.firstElementChild.firstElementChild;
+        var row=original.cloneNode(true);
+        row.dataset.keyword=i;
+        row.lastElementChild.firstElementChild.value=input;
+        //log(row);
+        return row;
+    }
+    
+}
+
+//x=keyword index
+function removeKeyword(x=0){
+    var modal=document.getElementById('modal');
+    var base=document.getElementById('modal-keyword');
+    var row=base.firstElementChild.firstElementChild; if(base.firstElementChild.lastElementChild.dataset.keyword!=0){
+        for(var i=0; i<=x; i++){
+            if(row.dataset.keyword==x)
+                {
+                    var asin=modal.dataset.asin;
+                    var root=modal.dataset.root; data[asin].root[root].keywords.splice(i,1); base.firstElementChild.removeChild(row);
+                    renameModalKeywords();
+                    return row;
+                }
+            else{
+                //skip
+                row=row.nextElementSibling;
+            }
+                //log(row.dataset.keyword);
+        }
+    }
+    else{
+        status("Cannot Remove Last Keyword",1);
+    }
+    
+}
+function updateKeyword(e){
+    
+    var input=e.value;
+    var index= e.parentElement.parentElement.dataset.keyword;
+    var modal=document.getElementById('modal')
+    var asin=modal.dataset.asin;
+    var root=modal.dataset.root;
+    data[asin].root[root].keywords[index].name=input;
+    
+}
+//change modal keywords list index values
+function renameModalKeywords(){
+    var modal=document.getElementById('modal');
+    var keywords=document.getElementById('modal-keyword');
+    var row=keywords.firstElementChild.firstElementChild;
+    var i=0;
+    while(row){
+        row.dataset.keyword=i;
+        row=row.nextElementSibling;
+        i++;
+    }
+    
+}
+
 
 /*send email*/
 /*var nodemailer = require('nodemailer');
@@ -245,3 +451,39 @@ transporter.sendMail(mailOptions, function(error, info){
     console.log('Email sent: ' + info.response);
   }
 });*/
+//hide element with css class
+function hide(e){
+    e.classList.add("Hide");
+}
+//show element with css class
+function show(e){
+    e.classList.remove("Hide");
+}
+//console.log message (multiple arguments gives multiple lines)
+function log(message){
+    var msg=message;
+    for (i = 1; i < arguments.length; i++) {
+        msg+="\n"+arguments[i];
+    }
+    console.log(msg);
+}
+//popup with timeout (default 1000)
+function message(msg, timeout=1000){
+    var notification = new Notification("Message", {body: msg});
+setTimeout(function() {notification.close()}, timeout);
+}
+function status(msg,code=0, time=1500){
+    var status=document.getElementById("status");
+    status.classList.remove('button4');
+    status.classList.remove('button3');
+    status.classList.remove('button1');
+    
+    status.innerHTML=msg;
+    status.classList.remove("Hide");
+    setTimeout(function(){status.classList.add("Hide");},time);
+    switch (code){
+        case 0: status.classList.add('button4');break;
+        case 1: status.classList.add('button3');break;
+        case 2: status.classList.add('button1');break;
+    }
+}

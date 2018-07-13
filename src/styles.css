@@ -1,29 +1,104 @@
-label{
-    border: solid 1px black;
-    padding: 2px;
+*{
+    transition: all 0.1s;
+    
+}
+/*colors
+#A4B5BE
+#2A4359
+#32738C
+#88B0BF
+#3C92A6*/
+html, body{
     margin: 0;
+    padding: 0;
+    line-height: 1em;
+    
+}
+button,.btn-group .button {
+    margin:1px;
+    background-color: #88B0BF; 
+    border: none;
+    color: white;
+    padding: 3px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    float: left;
+}
+
+button:hover, .btn-group .button:hover {
+    background-color: #32738C;
+}
+.button:hover{
+    cursor: pointer;
+    text-shadow: 1px 1px 1px black;
+}
+.button1,.button2,.button3,.button4,.button5{
+    
+}
+.button1 {background-color: #4CAF50;color:white;} /* Green */
+.button2 {background-color: #008CBA;color:white;} /* Blue */
+.button3 {background-color: #f44336; color:white;} /* Red */ 
+.button4 {background-color: #e7e7e7; color: black;} /* Gray */  
+.button5 {background-color: #555555;color:white;} /* Black */
+
+label{
+    padding: 2px;
+    margin: 1px;
     
 }
 div{
     margin: 0;
+    padding:0;
 }
 table{
-    width:95%;
+    border-collapse: collapse;
     margin: auto;
 }
-td{
-    border-top: solid 1px gray;
+#tables{
+    width:95%;
+    margin: auto;
+    background-color: #e6e6e6;
+}
+#tables tr{
+    width:100%;
+    margin:0;
+    padding: 1px;
+    height:1em;
+    
+}
+#tables tr:nth-child(even){background-color: #f2f2f2;}
+#tables tr:hover {background-color: #ddd;}
+#tables td,th{
+    margin:0;
+    padding: 1px;
+    
+    border: 1px solid #88B0BF;
+    padding: 8px;
+}
+#tables th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #32738C;
+    color: white;
 }
 
 .banner{
     width:100%;
     margin: 0;
     padding: 5px;
-    position: fixed;
     top:0;
-    left:auto;
-    background-color:gray;
+    left:0;
+    background-color:#2A4359;
+    color: aliceblue;
     
+}
+.banner table{
+    width: 95%;
+    margin: auto;
 }
 .num{
     width: 20px;
@@ -35,11 +110,17 @@ td{
     width: 10px;
 }
 .delete:hover{
-    cursor: pointer;
-    text-shadow: 0 0 1px gray;
+    color:#f44336;
 }
+.save:hover{
+    color:#4CAF50;
+}
+.more:hover{
+    color:#008CBA;
+}
+
 .topbuffer{
-    margin-top:70px;
+    margin-top:0px;
 }
 .title{
     width:100%;
@@ -49,7 +130,86 @@ td{
     align-content: center;
     text-align: center;
 }
-.more{
-    width="10px;";
-    cursor: pointer;
+
+input{
+    width:100%;
+    
+}
+.modal{
+    z-index: 100;
+}
+.modal-background{
+    position: fixed;
+    top:0;
+    left:0;
+    z-index: 99;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.8);
+}
+.modal-buttons{
+    width:100%;
+    
+}
+.modal-buttons .btn-group{
+    transform: translateX(60%);
+}
+.container{
+    position: relative;
+    
+    z-index: 101;
+    background-color: #88B0BF;
+    
+    width:80%;
+    margin:auto;
+}
+.Hide{
+    display:none;
+}
+.close{
+    position:fixed;
+    color:whitesmoke;
+    top:0;
+    right:0;
+    cursor:pointer;
+    margin:10px;
+    padding: 10px;
+    float:right;
+}
+.close i{
+    
+}
+.modal table{
+    margin: 20px auto;
+    padding: 30px;
+/*    width:80%;*/
+}
+.save{
+    
+}
+
+.less{
+    width:5px;
+    color:black;
+}
+.less:hover{
+    color:#f44336;
+}
+.top{
+    vertical-align: top;
+}
+.center{
+    text-align: center;
+    align-content: center;
+}
+.status{
+    z-index: 10000;
+    position: absolute;
+    bottom: 0;
+    left:50%;
+    transform: translateX(-50%);
+    padding:1px;
+    width:99%;
+    height:1em;
+    overflow: hidden;
 }
