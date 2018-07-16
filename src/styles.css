@@ -161,7 +161,10 @@ input{
     background-color: #88B0BF;
     
     width:80%;
+    max-width: 400px;
+    min-height: 300px;
     margin:auto;
+    padding: 10px;
 }
 .Hide{
     display:none;
@@ -180,9 +183,12 @@ input{
     
 }
 .modal table{
-    margin: 20px auto;
+    margin: auto auto;
     padding: 30px;
 /*    width:80%;*/
+}
+.modal table td{
+    padding:5px;
 }
 .save{
     

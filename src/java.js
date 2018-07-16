@@ -56,20 +56,28 @@ function update(e){
     for (var i=0;i<numKeywords;i++){
         var input= line.lastElementChild.firstElementChild.value;
         //if empty
-        log(input);
-        if(input!=""){
-        if(i>keywordsArray.length)//new keyword
-            {data[asin].root[root].keywords.push(new Keyword(input));
+        
+        {
+        if(i>=keywordsArray.length)//new keyword
+            {
+                if(input!="")
+                {data[asin].root[root].keywords.push(new Keyword(input));}
             }
         else//change name
-            {data[asin].root[root].keywords[i].name=input;
+            {
+               if(input!="") {
+                   data[asin].root[root].keywords[i].name=input;
+               }
+                else{
+                    data[asin].root[root].keywords.splice(i,1);
+                }
             }
         }
         line=line.nextElementSibling;
     }
     //>>keywords
     data[asin].root[root].keywords[0].link=document.getElementById('modal-redirect').value;
-    data[asin].root[root].keywords[0].clicks=document.getElementById('modal-clicks').value;
+    data[asin].root[root].clicks=document.getElementById('modal-clicks').value;
      data[asin].root[root].keywords[0].max_clicks=document.getElementById('modal-max').value;
      
     //>>users array
@@ -305,7 +313,7 @@ function more(i){
 
 function modal(asin,root,keyword){
     var modal=document.getElementById('modal');
-    modal.classList.remove("Hide");
+    show(modal);
     modal.dataset.asin=asin;
     modal.dataset.root=root;
     document.getElementById('modal-asin').value=        data[asin].asin;
@@ -348,53 +356,88 @@ function modal(asin,root,keyword){
 
 
 function closeModal(){
-    document.getElementById('modal').classList.add("Hide");
+    hide(document.getElementById('modal'));
 }
 
+
 //
-function addKeyword(){
+function addKeyword(name=""){
     var element=document.getElementById('modal');
     var asin=element.dataset.asin;
     var root=element.dataset.root;
-    var num=data[asin].root[root].keywords.length;
-    var keyword=new Keyword("");
+//    var num=data[asin].root[root].keywords.length;
+    var num = document.getElementById('modal-keyword').firstElementChild.lastElementChild.dataset.keyword;
+    num=parseInt(num)+1;
+    var keyword=new Keyword(name);
     document.getElementById('modal-keyword').firstElementChild.append( newKeywordRow(keyword.name,num));
-    data[asin].root[root].keywords.push(keyword);
 }
 
 //input=text , i=index
 function newKeywordRow(input="",i=-1){
     if(i!=-1){
         var base=document.getElementById('modal-keyword');
-        var original= base.firstElementChild.firstElementChild;
+        var original= base.firstElementChild.lastElementChild;
         var row=original.cloneNode(true);
-        row.dataset.keyword=i;
+        var index=row.dataset.keyword;
+        row.dataset.keyword= i;
+        
         row.lastElementChild.firstElementChild.value=input;
         //log(row);
         return row;
     }
     
 }
-
 //x=keyword index
-function removeKeyword(x=0){
+//only visual, must click update to change data
+function removeKeywordRow(x=0){
     var modal=document.getElementById('modal');
     var base=document.getElementById('modal-keyword');
-    var row=base.firstElementChild.firstElementChild; if(base.firstElementChild.lastElementChild.dataset.keyword!=0){
-        for(var i=0; i<=x; i++){
-            if(row.dataset.keyword==x)
-                {
-                    var asin=modal.dataset.asin;
-                    var root=modal.dataset.root; data[asin].root[root].keywords.splice(i,1); base.firstElementChild.removeChild(row);
-                    renameModalKeywords();
-                    return row;
-                }
-            else{
-                //skip
+    var row=base.firstElementChild.firstElementChild; 
+   log(x); if(base.firstElementChild.lastElementChild.dataset.keyword!=0){
+        for(var i=0;i<x;i++)
+            {
                 row=row.nextElementSibling;
             }
-                //log(row.dataset.keyword);
-        }
+        base.firstElementChild.removeChild(row);
+        renameModalKeywords();
+    }
+    else{
+        status("Cannot Remove Last Keyword",1);
+    }
+}
+//x=keyword index
+//remove from data
+function removeKeyword(x=0){
+    var modal=document.getElementById('modal');
+    var asin=modal.dataset.asin;
+    var root=modal.dataset.root;
+   var base=document.getElementById('modal-keyword'); 
+    //if last remaining row = not allowed
+    if(base.firstElementChild.lastElementChild.dataset.keyword!=0){
+        //if within data range - delete keyword
+        if(x<data[asin].root[root].keywords.length)
+        {
+            var row=base.firstElementChild.firstElementChild; 
+
+
+            for(var i=0; i<=x; i++){
+                if(row.dataset.keyword==x)
+                    {
+                        var asin=modal.dataset.asin;
+                        var root=modal.dataset.root; data[asin].root[root].keywords.splice(i,1); base.firstElementChild.removeChild(row);
+                        renameModalKeywords();
+                        return row;
+                    }
+                else{
+                    //skip
+                    row=row.nextElementSibling;
+                }
+                    //log(row.dataset.keyword);
+            }
+        }   
+       else{
+          removeKeywordRow(x); 
+       }
     }
     else{
         status("Cannot Remove Last Keyword",1);
@@ -425,7 +468,41 @@ function renameModalKeywords(){
     
 }
 
-
+function asin(id){
+    var base=document.getElementById('modal-roots');
+     log(base);
+    var asin=document.getElementById(id).dataset.asin;
+    var modal=document.getElementById('asin');
+    show(modal);
+    document.getElementById('asin-asin').innerHTML= data[asin].asin;
+    modal.dataset.asin= asin;
+    //clear previous data
+    var row= base.firstElementChild.firstElementChild.cloneNode(true);
+    //log(row);
+    //log(base.firstElementChild);
+    base.innerHTML="";
+    base.firstElementChild.append(row);
+    //log(base);
+    //add rows
+    for(var i=0;i<data[asin].root.length;i++){
+        base.firstElementChild.append(newRootRow(data[asin].root[i].name,i));
+         if(i==0){
+            base.firstElementChild.removeChild(base.firstElementChild.firstElementChild);
+        } 
+    }
+}
+function newRootRow(name="",i){
+    
+    var base= document.getElementById('modal-roots').firstElementChild.lastElementChild.cloneNode(true);
+    log(base);
+    base.dataset.root=i;
+    base.innerHTML=name;
+    //log(base);
+    return base;
+}
+function closeASIN(){
+    hide(document.getElementById('asin'));
+}
 /*send email*/
 /*var nodemailer = require('nodemailer');
 

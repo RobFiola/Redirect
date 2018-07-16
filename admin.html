@@ -34,16 +34,14 @@
                 <th>Keyword</th>
                 <th>Redirect To</th>
                 <th ><i class="fa fa-trash-alt"></i></th>
-                
-            
             </thead>
         <tbody>
         <tr id='0' data-asin="0" data-root='0' data-keyword='0'  >
             <td class="num">0</td>
             <td class="more button" onclick="more(this.parentElement.id)"><i class="fa fa-arrow-right"></i></td>
-            <td onclick="more(this.parentElement.id)"><label type="text" value="" data-field="root" placeholder="Insert Root Subdomain"></label></td>
-            <td ><label type="text" value="" maxlength="15" data-field="asin" placeholder="Insert ASIN"></label></td>
-            <td onclick="more(this.parentElement.id)" ><label type="text" value='' data-field="keyword" placeholder="Insert Keyword"></label></td>
+            <td onclick="more(this.parentElement.id)"><label type="text" value="" data-field="root" ></label></td>
+            <td onclick="asin(this.parentElement.id)"><label type="text" value="" maxlength="15" data-field="asin" ></label></td>
+            <td onclick="more(this.parentElement.id)" ><label type="text" value='' data-field="keyword" ></label></td>
             <td ><label  type="text" value="" data-field="link"></label></td>
             <td class='delete button' onclick="deleteItem(this.parentElement)"><i class="fa fa-times"></i></td>
             <td class="save button Hide" onclick="saveRow(this.parentElement)"><i class="fa fa-check"></i></td>
@@ -142,6 +140,27 @@
                 
             </table>
         </div></div>
+        <div id="asin" class="modal Hide" data-asin='0'>
+            <div class="modal-background" onclick="closeASIN()"></div>
+       <div class="container" >
+        <div class="close" onclick="closeASIN()"><i class="fa fa-times-circle"></i></div>
+            <table data-asin="" >
+            <tr><td>list of root urls for asin</td></tr>
+             <tr>
+                 <td>ASIN: <span id="asin-asin">0</span></td>
+             </tr>
+             <tr><td>Root Subdomains:</td></tr>
+              <tr id="modal-roots">
+                  <td>
+                      <div data-root='0' onclick="closeASIN();modal(getElementById('asin').dataset.asin,this.dataset.root)">
+                       </div>
+                  </td>
+                    
+                </tr>
+           </table>
+            </div>
+            
+        </div>
     <div id="status" class="status Hide">hello</div>
 </body>
 </html>
