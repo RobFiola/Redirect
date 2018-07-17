@@ -58,10 +58,16 @@ function update(e){
     for (var i=0;i<numKeywords;i++){
         var input= line.firstElementChild.nextElementSibling.firstElementChild.value;
         //if empty
-        if(i==0 && input=="" && numKeywords==1)
-            newKeywords.push(new Keyword(""));
+        if(i==0 && input=="" && numKeywords==0)
+            {
+                newKeywords.push(new Keyword(""));
+                data[asin].root[root].keywords[i].max_clicks= line.firstElementChild.nextElementSibling.nextElementSibling.firstElementChild.value;
+            }
         else if(input!="")
-        {newKeywords.push(new Keyword(input));}
+        {
+            newKeywords.push(new Keyword(input));
+            line.firstElementChild.nextElementSibling.nextElementSibling.firstElementChild.value;
+        }
         /*{
         if(i>=keywordsArray.length)//new keyword
             {
@@ -78,7 +84,7 @@ function update(e){
                 }
             }
         }*/
-        data[asin].root[root].keywords[i].max_clicks=line.firstElementChild.nextElementSibling.nextElementSibling.firstElementChild.value;
+       
         line=line.nextElementSibling;
     }
     data[asin].root[root].keywords=newKeywords;
