@@ -9,22 +9,24 @@
                     "keywords": [
                                     {
                                         "name":"cellphone+armband",
-                                        "link":"https://amazon.com"
+                                        "link":"https://amazon.com",
+                                        "clicks":0,
+                                        "max_clicks":10
 
                                     },
                                     {
                                         "name":"running+armband",
-                                        "link":"https://amazon.com"
-                                    
+                                        "link":"https://amazon.com",
+                                        "clicks":0,
+                                        "max_clicks":10
 
                                     }
                                 ],
                     "users": [
                             "Robert",
                             "Brady"
-                            ],
-                    "clicks":0,
-                    "max_clicks":10
+                            ]
+                    
                 },
                 {
                     "name": "NOC2",
@@ -32,20 +34,22 @@
                     "keywords": [
                                     {
                                         "name":"cellphone+armband",
-                                        "link":"https://amazon.com"
+                                        "link":"https://amazon.com",
+                                        "clicks":0,
+                                        "max_clicks":10
 
                                     },
                                     {
                                         "name":"running+armband",
-                                        "link":"https://amazon.com"
+                                        "link":"https://amazon.com",
+                                        "clicks":0,
+                                        "max_clicks":10
 
                                     }
                                 ],
                     "users": [
                             "Justin"                            
-                            ],
-                    "clicks":0,
-                    "max_clicks":10
+                            ]
                 }
                 
                 
@@ -66,21 +70,23 @@
                     "keywords": [
                                     {
                                         "name":"cellphone+armband",
-                                        "link":"https://amazon.com"
+                                        "link":"https://amazon.com",
+                                        "clicks":0,
+                                        "max_clicks":10
 
                                     },
                                     {
                                         "name":"running+armband",
-                                        "link":"https://amazon.com"
+                                        "link":"https://amazon.com",
+                                        "clicks":0,
+                                        "max_clicks":10
 
                                     }
                                 ],
                     "users": [
                             "JR",
                         "Keith"
-                            ],
-                    "clicks":0,
-                    "max_clicks":10
+                            ]
                 }
                    
 

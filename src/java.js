@@ -15,13 +15,13 @@ function Root(name="",keyword=""){
     this.name=name;
     this.path="";
     this.keywords=[new Keyword(keyword)];
-    this.users=[];
-    this.clicks=0;
-    this.max_clicks=0;        
+    this.users=[];        
 }
 function Keyword(name=""){
     this.name=name;
     this.link="";
+    this.clicks=0;
+    this.max_clicks=0;
 }
 var data=[];
 //Grab all data from json file and display in table
@@ -52,12 +52,17 @@ function update(e){
     var line=keywords.firstElementChild.firstElementChild;
     var numKeywords= parseInt(keywords.firstElementChild.lastElementChild.dataset.keyword)+1;
     var keywordsArray=data[asin].root[root].keywords;
+    //make new array
+    var newKeywords=[];
     
     for (var i=0;i<numKeywords;i++){
-        var input= line.lastElementChild.firstElementChild.value;
+        var input= line.firstElementChild.nextElementSibling.firstElementChild.value;
         //if empty
-        
-        {
+        if(i==0 && input=="" && numKeywords==1)
+            newKeywords.push(new Keyword(""));
+        else if(input!="")
+        {newKeywords.push(new Keyword(input));}
+        /*{
         if(i>=keywordsArray.length)//new keyword
             {
                 if(input!="")
@@ -72,18 +77,21 @@ function update(e){
                     data[asin].root[root].keywords.splice(i,1);
                 }
             }
-        }
+        }*/
+        data[asin].root[root].keywords[i].max_clicks=line.firstElementChild.nextElementSibling.nextElementSibling.firstElementChild.value;
         line=line.nextElementSibling;
     }
+    data[asin].root[root].keywords=newKeywords;
     //>>keywords
-    data[asin].root[root].keywords[0].link=document.getElementById('modal-redirect').value;
-    data[asin].root[root].clicks=document.getElementById('modal-clicks').value;
-     data[asin].root[root].keywords[0].max_clicks=document.getElementById('modal-max').value;
+    if(data[asin].root[root].keywords.length>0)
+        data[asin].root[root].keywords[0].link=document.getElementById('modal-redirect').value;
+    //data[asin].root[root].keywords[0].clicks=document.getElementById('modal-clicks').value;
+     
      
     //>>users array
     var users=document.getElementById('modal-users').value.split(',');
     
-    data[asin].root[root].keywords[0].users=users;
+    data[asin].root[root].users=users;
     log(data);
     hide(document.getElementById('modal'));
 }
@@ -324,24 +332,14 @@ function modal(asin,root,keyword){
     
     base.firstElementChild.innerHTML="";
     base.firstElementChild.append(row);
-    for(var i=0;i<data[asin].root[root].keywords.length;i++)
-    {
-        row=newKeywordRow(data[asin].root[root].keywords[i].name,i);
-       if(i==0){
-            base.firstElementChild.removeChild(base.firstElementChild.firstElementChild);
-        } 
-        
-            base.firstElementChild.append(row);
-        
-            
-    }
+    
     document.getElementById('modal-redirect').value=    data[asin].url;
     
-    document.getElementById('modal-clicks').value=    data[asin].root[root].clicks;
-   
-    document.getElementById('modal-max').value=    data[asin].root[root].max_clicks;
-    //make list of users
     
+   
+   
+    
+    //make list of users
     var usersArr= data[asin].root[root].users
     var users="";
    for(var i=0;i<usersArr.length;i++)
@@ -352,6 +350,20 @@ function modal(asin,root,keyword){
                {users+=", ";}
        }
     document.getElementById('modal-users').value=users;
+    
+    for(var i=0;i<data[asin].root[root].keywords.length;i++)
+    {
+        row=newKeywordRow(data[asin].root[root].keywords[i].name,i);
+         row.firstElementChild.nextElementSibling.nextElementSibling.firstElementChild.value=    data[asin].root[root].keywords[i].clicks;
+        row.firstElementChild.nextElementSibling.nextElementSibling.nextElementSibling.firstElementChild.value= data[asin].root[root].keywords[i].max_clicks;
+       if(i==0){
+            base.firstElementChild.removeChild(base.firstElementChild.firstElementChild);
+        } 
+        
+            base.firstElementChild.append(row);
+        
+            
+    }
 }
 
 
@@ -378,10 +390,9 @@ function newKeywordRow(input="",i=-1){
         var base=document.getElementById('modal-keyword');
         var original= base.firstElementChild.lastElementChild;
         var row=original.cloneNode(true);
-        var index=row.dataset.keyword;
         row.dataset.keyword= i;
-        
-        row.lastElementChild.firstElementChild.value=input;
+        log(row);
+        row.firstElementChild.nextElementSibling.firstElementChild.value=input;
         //log(row);
         return row;
     }
