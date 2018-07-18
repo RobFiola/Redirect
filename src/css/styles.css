@@ -1,6 +1,7 @@
 *{
     transition: all 0.1s;
-    
+    cursor:default;
+    word-wrap:normal;
 }
 /*colors
 #A4B5BE
@@ -35,6 +36,9 @@ button:hover, .btn-group .button:hover {
     cursor: pointer;
     text-shadow: 1px 1px 1px black;
 }
+.button i{
+    cursor: inherit;
+}
 .button1,.button2,.button3,.button4,.button5{
     
 }
@@ -43,6 +47,11 @@ button:hover, .btn-group .button:hover {
 .button3 {background-color: #f44336; color:white;} /* Red */ 
 .button4 {background-color: #e7e7e7; color: black;} /* Gray */  
 .button5 {background-color: #555555;color:white;} /* Black */
+
+a{
+    color:#128ec3;
+    cursor:zoom-in;
+}
 
 label{
     padding: 2px;
@@ -101,8 +110,17 @@ table{
     margin: auto;
 }
 .num{
-    width: 20px;
+/*    width: 20px;*/
+    
     text-align: center;
+    cursor:default;
+}
+.num i{
+    margin: auto;
+}
+.link{
+    height: 10px;
+/*    overflow: hidden;*/
 }
 .delete{
     text-align: center;
@@ -138,6 +156,15 @@ input{
 .modal{
     z-index: 100;
 }
+#modal-table{
+    height: 100%;
+    overflow: hidden;
+}
+#modal-keyword{
+    height: 300px;
+    max-height: 300px;
+    overflow-y: scroll;
+}
 .modal-background{
     position: fixed;
     top:0;
@@ -159,14 +186,20 @@ input{
     align-content: center;
 }
 .container{
-    position: relative;
-    
+    position: fixed;
+    left: 50%;
+    top:100px;
+    transform: translateX(-50%);
     z-index: 101;
     background-color: #88B0BF;
     
     width:80%;
     max-width: 400px;
     min-height: 250px;
+/*
+    max-height: 400px;
+    overflow: scroll;
+*/
     margin:auto;
     padding: 10px;
 }
@@ -180,8 +213,8 @@ input{
     right:0;
     cursor:pointer;
     margin:10px;
-    padding: 10px;
-    float:right;
+/*    padding: 10px;*/
+/*    float:right;*/
     font-size: 1.5em;
 }
 .close i{

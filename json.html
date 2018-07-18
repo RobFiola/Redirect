@@ -1,0 +1,158 @@
+
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="src/css/json.css">
+<!--        <script src="https://code.jquery.com/jquery-1.10.2.js"></script>-->
+        <script>
+            var input;
+            var myJSON;
+            var filepath="src/js/redirects.json";
+            var xmlhttp;
+            function openJSON(file=filepath){
+                xmlhttp = new XMLHttpRequest();
+                xmlhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    myJSON = JSON.parse(this.responseText);
+
+                    input=myJSON;
+                    console.log(input);
+                    document.getElementById('json').value=JSON.stringify(input,undefined, 2);
+                    
+                    }
+                };
+                xmlhttp.open("GET", file, true);
+                xmlhttp.send();
+                return input;
+            }
+            function save(file=filepath){
+                if(file!=null && file!="")
+                {
+                    var data = new FormData();
+                    data.append("data" , input);
+                    var xhr = xmlhttp;
+                    xhr.open( 'post', file, true );
+                    xhr.send(data);
+                }
+            }
+            //download(input, filepath, 'text/plain');
+            function download(content, fileName, contentType) {
+                var a = document.createElement("a");
+                var file = new Blob([content], {type: contentType});
+                a.href = URL.createObjectURL(file);
+                a.download = fileName;
+                a.click();
+            }
+
+            
+        </script>
+    </head>
+    <body>
+       <div id='title'>JSON</div><button id="save" onclick="save()">Save</button>
+        <textarea name="JSON_file" id="json" cols="100"></textarea>
+        <script>
+            
+            document.getElementById('title').innerHTML=document.location.pathname;
+            openJSON();
+            //console.log(input);
+         if(!input)
+                document.getElementById('json').value="Unable to open";
+        </script>
+    </body>
+</html>
+<!--
+<html>
+<body>
+ 
+<table>
+    <tr><td>Text to Save:</td></tr>
+    <tr>
+        <td colspan="3">
+            <textarea id="inputTextToSave" cols="80" rows="25"></textarea>
+        </td>
+    </tr>
+    <tr>
+        <td>Filename to Save As:</td>
+        <td><input id="inputFileNameToSaveAs"></input></td>
+        <td><button onclick="saveTextAsFile()">Save Text to File</button></td>
+    </tr>
+    <tr>
+        <td>Select a File to Load:</td>
+        <td><input type="file" id="fileToLoad"></td>
+        <td><button onclick="loadFileAsText()">Load Selected File</button><td>
+    </tr>
+</table>
+ 
+<script type="text/javascript">
+ 
+function saveTextAsFile()
+{
+    var textToSave = document.getElementById("inputTextToSave").value;
+    var textToSaveAsBlob = new Blob([textToSave], {type:"text/plain"});
+    var textToSaveAsURL = window.URL.createObjectURL(textToSaveAsBlob);
+    var fileNameToSaveAs = document.getElementById("inputFileNameToSaveAs").value;
+ 
+    var downloadLink = document.createElement("a");
+    downloadLink.download = fileNameToSaveAs;
+    downloadLink.innerHTML = "Download File";
+    downloadLink.href = textToSaveAsURL;
+    downloadLink.onclick = destroyClickedElement;
+    downloadLink.style.display = "none";
+    document.body.appendChild(downloadLink);
+ 
+    downloadLink.click();
+}
+ 
+function destroyClickedElement(event)
+{
+    document.body.removeChild(event.target);
+}
+ 
+function loadFileAsText()
+{
+    var fileToLoad = document.getElementById("fileToLoad").files[0];
+ 
+    var fileReader = new FileReader();
+    fileReader.onload = function(fileLoadedEvent) 
+    {
+        var textFromFileLoaded = fileLoadedEvent.target.result;
+        document.getElementById("inputTextToSave").value = textFromFileLoaded;
+    };
+    fileReader.readAsText(fileToLoad, "UTF-8");
+}
+ 
+</script>
+ 
+</body>
+</html>
+-->
+
+<!--
+<?php
+
+// configuration
+$url = 'http://domain.com/backend/editor.php';
+$file = '/path/to/txt/file';
+
+// check if form has been submitted
+if (isset($_POST['text']))
+{
+    // save the text contents
+    file_put_contents($file, $_POST['text']);
+
+    // redirect to form again
+    header(sprintf('Location: %s', $url));
+    printf('<a href="%s">Moved</a>.', htmlspecialchars($url));
+    exit();
+}
+
+// read the textfile
+$text = file_get_contents($file);
+
+
+?>
+<form action="" method="post">
+<textarea name="text"><?php echo htmlspecialchars($text) ?></textarea>
+<input type="submit" />
+<input type="reset" />
+</form>
+-->

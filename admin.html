@@ -8,8 +8,8 @@
 <html>
 <head>
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="src/java.js"></script>
-<link rel="stylesheet" type="text/css" href="src/styles.css">
+    <script src="src/js/java.js"></script>
+<link rel="stylesheet" type="text/css" href="src/css/styles.css">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
 
 
@@ -27,7 +27,7 @@
     <div class="topbuffer"></div>
     <table id='tables'>
         <thead>
-                <th class="num"><i class="fa fa-hashtag"></i></th>
+                <th class="num" width="30px"><i class="fa fa-hashtag"></i></th>
                 <th>Info</th>
                 <th>ROOT Subdomain</th>
                 <th>Product SKU</th>
@@ -42,12 +42,13 @@
             <td onclick="more(this.parentElement.id)"><label type="text" value="" data-field="root" ></label></td>
             <td onclick="asin(this.parentElement.id)"><label type="text" value="" maxlength="15" data-field="asin" ></label></td>
             <td onclick="more(this.parentElement.id)" ><label type="text" value='' data-field="keyword" ></label></td>
-            <td ><label  type="text" value="" data-field="link"></label></td>
+            <td ><a class="link" href="#"  data-field="link" target="_blank">View</a></td>
             <td class='delete button' onclick="deleteItem(this.parentElement)"><i class="fa fa-times"></i></td>
             <td class="save button Hide" onclick="saveRow(this.parentElement)"><i class="fa fa-check"></i></td>
 
 
-        </tr></tbody>
+        </tr>
+        </tbody>
 
     </table>
     <div id="modal" class="modal Hide" data-asin="0" data-root="0">
@@ -107,7 +108,7 @@
                         <li>Clicks</li>
                         <li>Max Clicks</li>
                     </ul>
-                        <table id="modal-keyword" data-field="keyword">
+                        <div id="modal-table"><table id="modal-keyword" data-field="keyword">
                            <tr data-keyword='0'>
                                 <td class='remove' onclick="removeKeywordRow(this.parentElement.dataset.keyword)"><i class='fa fa-minus button'></i></td>
                                 <td><input  type='text' value=''  placeholder='enter keyword' ></td>
@@ -115,7 +116,7 @@
                                 <td><input type='text' value=''  placeholder='enter number' ></td>
                             </tr>
                             <!-- ... -->
-                        </table>
+                        </table></div>
                         
                     
                 <div class="modal-buttons">
@@ -151,6 +152,7 @@
             </div>
             
         </div>
-    <div id="status" class="status Hide">hello</div>
+        
+    <div id="status" class="status Hide"></div>
 </body>
 </html>

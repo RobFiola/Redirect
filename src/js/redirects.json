@@ -8,24 +8,19 @@
                     "path": "NOC1.opendoordeals.com",
                     "keywords": [
                                     {
-                                        "name":"cellphone+armband",
-                                        "link":"https://amazon.com",
-                                        "clicks":0,
-                                        "max_clicks":10
-
-                                    },
-                                    {
                                         "name":"running+armband",
                                         "link":"https://amazon.com",
                                         "clicks":0,
                                         "max_clicks":10
-
+                                    },
+                                    {
+                                        "name":"cellphone+armband",
+                                        "link":"https://amazon.com",
+                                        "clicks":0,
+                                        "max_clicks":10
                                     }
                                 ],
-                    "users": [
-                            "Robert",
-                            "Brady"
-                            ]
+                    "users": ["Robert","Brady"]
                     
                 },
                 {
@@ -47,19 +42,10 @@
 
                                     }
                                 ],
-                    "users": [
-                            "Justin"                            
-                            ]
+                    "users": ["Justin"]
                 }
-                
-                
-                
-                   
-
-            
             ]
-        
-     },
+        },
    {
             "asin": "B01692ZJYY",
             "url": "https://www.amazon.com/Cell-Phone-Armband-Sweatproof-Protective/dp/B01692ZJYY",
@@ -69,7 +55,7 @@
                     "path": "JYY1.opendoordeals.com",
                     "keywords": [
                                     {
-                                        "name":"cellphone+armband",
+                                        "name":"iphone+armband",
                                         "link":"https://amazon.com",
                                         "clicks":0,
                                         "max_clicks":10
@@ -83,16 +69,8 @@
 
                                     }
                                 ],
-                    "users": [
-                            "JR",
-                        "Keith"
-                            ]
+                    "users": ["JR","Keith"]
                 }
-                   
-
-            
             ]
-   
-       }
-    
+   }
 ]

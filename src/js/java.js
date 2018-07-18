@@ -65,8 +65,9 @@ function update(e){
             }
         else if(input!="")
         {
+            
             newKeywords.push(new Keyword(input));
-            line.firstElementChild.nextElementSibling.nextElementSibling.firstElementChild.value;
+            newKeywords[newKeywords.length-1].max_clicks= line.firstElementChild.nextElementSibling.nextElementSibling.nextElementSibling.firstElementChild.value;
         }
         /*{
         if(i>=keywordsArray.length)//new keyword
@@ -93,13 +94,25 @@ function update(e){
         data[asin].root[root].keywords[0].link=document.getElementById('modal-redirect').value;
     //data[asin].root[root].keywords[0].clicks=document.getElementById('modal-clicks').value;
      
-     
+     //>>link
+    updateLink(asin,root,0);
     //>>users array
     var users=document.getElementById('modal-users').value.split(',');
     
     data[asin].root[root].users=users;
     log(data);
     hide(document.getElementById('modal'));
+    showData();
+}
+//generate super url from data
+function updateLink(asin=0,root=0,keyword=0){
+    //generateSuperURL
+    var link=data[asin].url;
+    var keywords=data[asin].root[root].keywords[keyword].name;
+    
+    link+="?keywords="+keywords;
+    data[asin].root[root].keywords[keyword].link=link;
+    return link;
 }
 /*read JSON file and save to data*/
 function openJSON(){
@@ -115,7 +128,7 @@ function openJSON(){
             showData();
         }
     };
-    xmlhttp.open("GET", "src/redirects.json", true);
+    xmlhttp.open("GET", "src/js/redirects.json", true);
     xmlhttp.send();
     
     return true;
@@ -124,11 +137,11 @@ function openJSON(){
 /*save to JSON file*/
 //update html redirect files
 function save(){
-    status("Data Saved Successfully" , 2);
+    status("Not Functional" , 1);
     console.log(data);
     var json = JSON.stringify(data);
     var fs = require('fs');
-    fs.writeFile('myjsonfile.json', json, 'utf8', callback);
+    fs.writeFile('src/js/redirects.json', json, 'utf8', callback);
     // step 2: convert data structure to JSON
     //$.post("src/json.php", {json : JSON.stringify(data)});
 }
@@ -153,34 +166,35 @@ function sortData(input){
 
 /*display data in table*/
 function showData(){
-    var row=0;//# of rows
+    var row=-1;//# of rows
     tableRow=document.getElementById('0');
     //ASINS
     for(var i=0;i<data.length;i++){
         //console.log("i="+i);
-        var obj=data[i];
+        var asin=data[i];
         //SUBDOMAINS
-        for(var j=0;j<obj.root.length;j++){
+        for(var j=0;j<asin.root.length;j++){
             //new line for each subdomain
-            //console.log("j="+j);
+           //log("root="+j+",asin="+i);
             
             
-                newRow(row);
+                nextRow(++row);
 
                var parent= document.getElementById(row); 
             parent.dataset.asin=i;    
             parent.dataset.root=j;
                 var sibling= parent.firstElementChild.nextElementSibling.nextElementSibling;
 
-                sibling.firstElementChild.innerHTML=obj.root[j].name;
+                sibling.firstElementChild.innerHTML=asin.root[j].name;
                 sibling=sibling.nextElementSibling;
-                sibling.firstElementChild.innerHTML=obj.asin;
+                sibling.firstElementChild.innerHTML=asin.asin;
                 sibling=sibling.nextElementSibling;
-                sibling.firstElementChild.innerHTML=obj.root[j].keywords[0].name;
+                sibling.firstElementChild.innerHTML=asin.root[j].keywords[0].name;
                 sibling=sibling.nextElementSibling;
-                sibling.firstElementChild.innerHTML=obj.root[j].keywords[0].link;
+                //sibling.firstElementChild.innerHTML=asin.root[j].keywords[0].link;
+                sibling.firstElementChild.title=asin.root[j].keywords[0].link;
+                sibling.firstElementChild.href=asin.root[j].keywords[0].link;
                 
-                row++;
             
         }
     
@@ -198,7 +212,7 @@ function showData(){
 
 /*create new item and display on table*/
 function addItem(){
-    var asin = prompt("Please enter your product ASIN");
+    var asin = prompt("Please enter your product SKU");
     //console.log(asin);
     if (asin !== null && asin != "") {
         var item;
@@ -213,26 +227,29 @@ function addItem(){
         }
         if(found==-1){
             data.push(item=new ASIN(asin));
-            var row=newRow(data.length, data[data.length-1]);
+            var row=nextRow(data.length, data[data.length-1]);
                      }
 
         else{
             data[found].root.push(item=new Root());
-            var row=newRow(data.length, data[data.length-1]);
+            var row=nextRow(data.length, data[data.length-1]);
         }
-
+        showData();
         //document.getElementById(data.length);
         console.log(data);
     }
 }
 
 /*duplicate a new Row*/
-function newRow(i){
+function nextRow(i){
     var original=document.getElementById('0');
         //console.log(original);
+    var next=document.getElementById(i);
     var row;
         if(i==0)
             row=original;
+        else if(next)
+            row=next;
         else
             row=original.cloneNode(true);
 //console.log(item);
@@ -312,7 +329,7 @@ function deleteItem(item){
 //open new page to see root file
 //editable file?
 function download(){
-    window.open('src/redirects.json',"_self");
+    window.open('json.html',"_blank");
 }
 
 //show more details about item
