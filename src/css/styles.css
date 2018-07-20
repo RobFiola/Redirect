@@ -3,18 +3,43 @@
     cursor:default;
     word-wrap:normal;
 }
+*, *:before, *:after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+html {
+  position: relative;
+  min-height: 100%;
+    margin: 0;
+    padding: 0;
+    line-height: 1rem;
+}
+body {
+  /* Margin bottom by footer height */
+    
+  margin-bottom: 60px;
+}
+.body{
+   margin-top: 60px; 
+}
 /*colors
 #A4B5BE
 #2A4359
 #32738C
 #88B0BF
 #3C92A6*/
+/*html{
+    overflow-y: scroll;
+}*/
+/*
 html, body{
-    margin: 0;
-    padding: 0;
-    line-height: 1em;
+    
+    
     
 }
+*/
+/*
 button,.btn-group .button {
     margin:1px;
     background-color: #88B0BF; 
@@ -29,6 +54,7 @@ button,.btn-group .button {
     float: left;
 }
 
+
 button:hover, .btn-group .button:hover {
     background-color: #32738C;
 }
@@ -41,16 +67,26 @@ button:hover, .btn-group .button:hover {
 }
 .button1,.button2,.button3,.button4,.button5{
     
-}
+}*/
 .button1 {background-color: #4CAF50;color:white;} /* Green */
 .button2 {background-color: #008CBA;color:white;} /* Blue */
 .button3 {background-color: #f44336; color:white;} /* Red */ 
 .button4 {background-color: #e7e7e7; color: black;} /* Gray */  
 .button5 {background-color: #555555;color:white;} /* Black */
-
+h1{
+    font-size: 2rem;
+}
 a{
+    text-decoration: none;
     color:#128ec3;
-    cursor:zoom-in;
+    cursor:pointer;
+    padding: 0 3px;
+}
+a:hover{
+    text-decoration: none !important;
+    background-color: rgba(0,0,0,0.1);
+    border-radius: 20%;
+     cursor:pointer;
 }
 
 label{
@@ -62,15 +98,11 @@ div{
     margin: 0;
     padding:0;
 }
-table{
-    border-collapse: collapse;
-    margin: auto;
-}
+
+
 #tables{
-    width:95%;
-    margin: auto;
-    background-color: #e6e6e6;
-}
+    box-shadow: 1px 1px 10px rgba(0,0,0,0.5);
+}/*
 #tables tr{
     width:100%;
     margin:0;
@@ -94,33 +126,26 @@ table{
     background-color: #32738C;
     color: white;
 }
+*/
 
-.banner{
-    width:100%;
-    margin: 0;
-    padding: 5px;
-    top:0;
-    left:0;
-    background-color:#2A4359;
-    color: aliceblue;
-    
-}
-.banner table{
-    width: 95%;
-    margin: auto;
-}
+
+
 .num{
 /*    width: 20px;*/
     
     text-align: center;
     cursor:default;
 }
-.num i{
+i.fa{
     margin: auto;
+    cursor: inherit;
+}
+
+.num i{
+    
 }
 .link{
     height: 10px;
-/*    overflow: hidden;*/
 }
 .delete{
     text-align: center;
@@ -137,34 +162,44 @@ table{
     color:#008CBA;
 }
 
-.topbuffer{
-    margin-top:0px;
-}
-.title{
-    width:100%;
-    display: inline-block;
-    font-family: monospace;
-    font-size: 1.5em;
-    align-content: center;
-    text-align: center;
-}
 
+
+
+/*
 input{
     width:100%;
     
 }
+*/
+
+/*MODAL*/
+
+.modal table{
+    width:90%;
+}
+#modal-table input{
+    width:100%;
+}
+.root{
+    border: 
+}
+.modal-backdrop {
+   background-color: white;
+    opacity:0.95 !important;
+}
+/*
 .modal{
     z-index: 100;
 }
 #modal-table{
     height: 100%;
     overflow: hidden;
-}
+}*/
 #modal-keyword{
-    height: 300px;
+    
     max-height: 300px;
     overflow-y: scroll;
-}
+}/*
 .modal-background{
     position: fixed;
     top:0;
@@ -195,17 +230,10 @@ input{
     
     width:80%;
     max-width: 400px;
-    min-height: 250px;
-/*
-    max-height: 400px;
-    overflow: scroll;
-*/
     margin:auto;
     padding: 10px;
 }
-.Hide{
-    display:none;
-}
+
 .close{
     position:fixed;
     color:whitesmoke;
@@ -213,38 +241,30 @@ input{
     right:0;
     cursor:pointer;
     margin:10px;
-/*    padding: 10px;*/
-/*    float:right;*/
     font-size: 1.5em;
-}
-.close i{
-    
 }
 .modal table{
     margin: auto auto;
     padding: 30px;
-/*    width:80%;*/
-}
-.modal  ul{
-    text-indent: 0;
-    width:100%;
-    padding:1px 10px;
-    display: inline-flex;
-}
-.modal li{
-    
-    float:left;
-    margin:1px 20px;
-    list-style:none;
-    text-indent: 0;
-    border-bottom: groove 1px black;
-    
+
 }
 .modal table td{
     padding:5px;
-}
-.save{
-    
+}*/
+/*End of modal*/
+
+/* Sticky footer styles
+-------------------------------------------------- */
+
+#footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 30px;
+  line-height: 30px; /* Vertically center the text there */
+  background-color: #f5f5f5;
+    padding-bottom: 5px;
 }
 
 .less{
@@ -261,14 +281,7 @@ input{
     text-align: center;
     align-content: center;
 }
-.status{
-    z-index: 10000;
-    position: absolute;
-    bottom: 0;
-    left:50%;
-    transform: translateX(-50%);
-    padding:1px;
-    width:99%;
-    height:1em;
-    overflow: hidden;
+
+.Hide{
+    display:none;
 }

@@ -26,13 +26,21 @@
             }
             function save(file=filepath){
                 input=document.getElementById('json').value;
+                //using PUT method - doesnt work offline
+                /*xmlhttp = new XMLHttpRequest();
+                xmlhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    alert('save completed successfully');
+                }};
+                xmlhttp.open("PUT", 'redirects.json', true);
+                xmlhttp.send(input);*/
                 
                 if(file!=null && file!="")
                 {
                     var data = new FormData();
                     data.append("data" , input);
-                    var xhr = xmlhttp;
-                    xhr.open( 'post', file, true );
+                    var xhr = new XMLHttpRequest();
+                    xhr.open( 'post', 'src/php/save.php', true );
                     xhr.send(data);
                 }
             }
@@ -49,11 +57,13 @@
         </script>
     </head>
     <body>
+      <div class="top">
        <div id='title'>JSON </div>
        <div class="btn-group">
        <button id="refresh" onclick="location.reload();" class="button">Refresh</button>
        <button id="save" class="button" onclick="save()">Save</button>
        <button id="save" class="button" onclick="download()">Download</button></div>
+       </div>
         <textarea name="JSON_file" id="json" cols="100" ></textarea>
         <script>
             

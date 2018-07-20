@@ -1,0 +1,79 @@
+[
+  {
+    "asin": "B01ENN5NOC",
+    "url": "https://www.amazon.com/Sports-Armband-Exercise-Running-Workout/dp/B01ENN5NOC/ref=sr_1_3",
+    "root": [
+      {
+        "name": "NOC1",
+        "path": "NOC1.opendoordeals.com",
+        "keywords": [
+          {
+            "name": "running+armband",
+            "link": "https://amazon.com",
+            "clicks": 0,
+            "max_clicks": 10
+          },
+          {
+            "name": "cellphone+armband",
+            "link": "https://amazon.com",
+            "clicks": 0,
+            "max_clicks": 10
+          }
+        ],
+        "users": [
+          "Robert",
+          "Brady"
+        ]
+      },
+      {
+        "name": "NOC2",
+        "path": "NOC2.opendoordeals.com",
+        "keywords": [
+          {
+            "name": "cellphone+armband",
+            "link": "https://amazon.com",
+            "clicks": 0,
+            "max_clicks": 10
+          },
+          {
+            "name": "running+armband",
+            "link": "https://amazon.com",
+            "clicks": 0,
+            "max_clicks": 10
+          }
+        ],
+        "users": [
+          "Justin"
+        ]
+      }
+    ]
+  },
+  {
+    "asin": "B01692ZJYY",
+    "url": "https://www.amazon.com/Cell-Phone-Armband-Sweatproof-Protective/dp/B01692ZJYY",
+    "root": [
+      {
+        "name": "JYY1",
+        "path": "JYY1.opendoordeals.com",
+        "keywords": [
+          {
+            "name": "iphone+armband",
+            "link": "https://amazon.com",
+            "clicks": 0,
+            "max_clicks": 10
+          },
+          {
+            "name": "running+armband",
+            "link": "https://amazon.com",
+            "clicks": 0,
+            "max_clicks": 10
+          }
+        ],
+        "users": [
+          "JR",
+          "Keith"
+        ]
+      }
+    ]
+  }
+]

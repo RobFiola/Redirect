@@ -2,7 +2,6 @@
 var document=window.document;
 var myJSON=null;
 var xmlhttp=null;
-
 function ASIN(asin, root="", keyword=""){
     this.asin= asin;
     this.url= "";
@@ -14,8 +13,13 @@ function ASIN(asin, root="", keyword=""){
 function Root(name="",keyword=""){
     this.name=name;
     this.path="";
+    this.setName= function(root){
+        name=root;
+        path=root+".opendoordeals.com";
+    };
     this.keywords=[new Keyword(keyword)];
-    this.users=[];        
+    this.users=[];
+    
 }
 function Keyword(name=""){
     this.name=name;
@@ -32,22 +36,30 @@ openJSON();
 //create new html redirect file when new item created
 
 /*on document ready*/
-$(function() {
+$(document).ready(function() {
     listeners();
+    $('[data-toggle="tooltip"]').tooltip();
+    
+    $('.nav-link').click(function( event ){
+            event.preventDefault();
+        
+    
 });
-
+});
 /*add listeners to all editable items*/
 function listeners(){
     
 }
 function update(e){
-    var modal=document.getElementById('modal');
+    log('update:');
+    log(e);
+    var modal=document.getElementById('modal-root');
     var asin=modal.dataset.asin;
     var root=modal.dataset.root;
     //update data
     data[asin].asin=document.getElementById('modal-asin').value;
     
-    data[asin].root[root].name=document.getElementById('modal-root').value;
+    data[asin].root[root].name=(document.getElementById('modal-sub').value);
     var keywords=document.getElementById('modal-keyword');
     var line=keywords.firstElementChild.firstElementChild;
     var numKeywords= parseInt(keywords.firstElementChild.lastElementChild.dataset.keyword)+1;
@@ -58,7 +70,7 @@ function update(e){
     for (var i=0;i<numKeywords;i++){
         var input= line.firstElementChild.nextElementSibling.firstElementChild.value;
         //if empty
-        if(i==0 && input=="" && numKeywords==0)
+        if(i==0 && input=="" && numKeywords==1)
             {
                 newKeywords.push(new Keyword(""));
                 data[asin].root[root].keywords[i].max_clicks= line.firstElementChild.nextElementSibling.nextElementSibling.firstElementChild.value;
@@ -101,17 +113,19 @@ function update(e){
     
     data[asin].root[root].users=users;
     log(data);
-    hide(document.getElementById('modal'));
+    $('#modal1').modal('hide');
     showData();
 }
 //generate super url from data
 function updateLink(asin=0,root=0,keyword=0){
-    //generateSuperURL
+    //>>generateSuperURL
     var link=data[asin].url;
+    log(data[asin].root[root]);
     var keywords=data[asin].root[root].keywords[keyword].name;
     
     link+="?keywords="+keywords;
     data[asin].root[root].keywords[keyword].link=link;
+    //>>send link to server files
     return link;
 }
 /*read JSON file and save to data*/
@@ -137,13 +151,15 @@ function openJSON(){
 /*save to JSON file*/
 //update html redirect files
 function save(){
+    log('save');
     status("Not Functional" , 1);
-    console.log(data);
+    log(data);
     var json = JSON.stringify(data);
     var fs = require('fs');
     fs.writeFile('src/js/redirects.json', json, 'utf8', callback);
     // step 2: convert data structure to JSON
     //$.post("src/json.php", {json : JSON.stringify(data)});
+    //status('Saved',2);
 }
 function saveRow(item){
     //***//
@@ -209,10 +225,27 @@ function showData(){
 */
     
 }
-
+function openNew(){
+    $('#input-asin').val('');
+    asinDataList();
+    
+    $('#modal3').modal();
+}
+function inputAsin(){
+    var asin=$('#input-asin').val();
+    //log("asin: "+asin);
+    addItem(asin);
+    
+}
 /*create new item and display on table*/
-function addItem(){
-    var asin = prompt("Please enter your product SKU");
+function addItem(asin=null){
+    
+    log('add Item');
+    
+   //
+//    asin=$('input-asin').value;
+//    asin=prompt();
+    
     //console.log(asin);
     if (asin !== null && asin != "") {
         var item;
@@ -227,20 +260,35 @@ function addItem(){
         }
         if(found==-1){
             data.push(item=new ASIN(asin));
-            var row=nextRow(data.length, data[data.length-1]);
                      }
 
         else{
             data[found].root.push(item=new Root());
-            var row=nextRow(data.length, data[data.length-1]);
+            
         }
+        var row=nextRow(data.length, data[data.length-1]);
         showData();
         //document.getElementById(data.length);
-        console.log(data);
+        log(data);
     }
+    else{
+        log('item not added',asin);
+    }
+    
+}
+/* create dropdown datalist for input-asin */
+function asinDataList(){
+    var dataList=document.getElementById('skulist');
+    dataList.innerHTML="";
+    for(var i=0;i<data.length;i++)
+   { 
+       var option = document.createElement('option');
+        option.value = data[i].asin;
+       dataList.appendChild(option);
+   }
 }
 
-/*duplicate a new Row*/
+/* duplicate a new Row */
 function nextRow(i){
     var original=document.getElementById('0');
         //console.log(original);
@@ -268,18 +316,28 @@ function nextRow(i){
     return row;
     
 }
-/**/
+/* change id of table rows */
 function nameElements (item, i){
         item.id=i;
         var sibling=item.firstElementChild;
         sibling.innerHTML=parseInt(i)+1;
 }
 
-/*remove item from table and data*/
-function deleteItem(item){
-    var i=parseInt(item.id);
-    var conf=confirm('are you sure you would like to delete item #'+(i+1));
-    if(conf){
+function confirmDelete(item){
+    $('#dialog-confirm').modal();
+     var i=parseInt(item.id);
+    
+    $('#dialog-confirm').data('id', i);
+    $('#span-id').html(i);
+}
+/* remove item from table and data */
+function deleteItem(i){
+    
+    var item=document.getElementById(i);
+    log('delete Item: ',i);
+   log(item);
+    
+    
         var asin=item.dataset.asin;
         var root=item.dataset.root;
         //add functionality to delete item
@@ -296,11 +354,7 @@ function deleteItem(item){
             {
                 data.splice(asin,1);
             }
-    //       if(i!=0){        element=document.getElementById('0');}
-    //   else {
-    //        element=document.getElementById('1');}
             element=document.getElementById('0');
-    //    console.log(element);
         if(element){
             var x=0;
             while(element && element.hasChildNodes){
@@ -317,24 +371,26 @@ function deleteItem(item){
             document.getElementById("tables").deleteRow(i+1);
         }
         else{
-            status('Cannot Delete Last Item',1);
+            status('Cannot Delete Last Item',3);
         }
     //    console.log(data);
 
-
+        status('Item Deleted',3);
         console.log(data);
-    }
+    
 }
 
 //open new page to see root file
 //editable file?
 function download(){
+    log('download');
     window.open('json.html',"_blank");
 }
 
 //show more details about item
 function more(i){
    //alert("Show more details about item "+i);
+    $('#modal1').modal('show');
     var obj=document.getElementById(i);
     var asin=obj.dataset.asin;
     var root=obj.dataset.root;
@@ -342,13 +398,14 @@ function more(i){
     modal(asin,root);
 }
 
-function modal(asin,root,keyword){
-    var modal=document.getElementById('modal');
-    show(modal);
+function modal(asin,root){
+    log('open modal-root', 'asin='+asin,'root='+root);
+    var modal=document.getElementById('modal-root');
+    //show(modal);
     modal.dataset.asin=asin;
     modal.dataset.root=root;
     document.getElementById('modal-asin').value=        data[asin].asin;
-    document.getElementById('modal-root').value=    data[asin].root[root].name;
+    document.getElementById('modal-sub').value=    data[asin].root[root].name;
     var base=document.getElementById('modal-keyword');
     //first row
     var row=base.firstElementChild.firstElementChild.cloneNode(true);
@@ -357,10 +414,6 @@ function modal(asin,root,keyword){
     base.firstElementChild.append(row);
     
     document.getElementById('modal-redirect').value=    data[asin].url;
-    
-    
-   
-   
     
     //make list of users
     var usersArr= data[asin].root[root].users
@@ -391,12 +444,14 @@ function modal(asin,root,keyword){
 
 
 function closeModal(){
+    log('close Modal');
     hide(document.getElementById('modal'));
 }
 
 
 //
 function addKeyword(name=""){
+    log('add Keyword: '+name);
     var element=document.getElementById('modal');
     var asin=element.dataset.asin;
     var root=element.dataset.root;
@@ -409,6 +464,7 @@ function addKeyword(name=""){
 
 //input=text , i=index
 function newKeywordRow(input="",i=-1){
+    //log('new Keyword Row: '+i+'='+input);
     if(i!=-1){
         var base=document.getElementById('modal-keyword');
         var original= base.firstElementChild.lastElementChild;
@@ -424,6 +480,7 @@ function newKeywordRow(input="",i=-1){
 //x=keyword index
 //only visual, must click update to change data
 function removeKeywordRow(x=0){
+    log('remove Keyword Row:'+x);
     var modal=document.getElementById('modal');
     var base=document.getElementById('modal-keyword');
     var row=base.firstElementChild.firstElementChild; 
@@ -442,6 +499,7 @@ function removeKeywordRow(x=0){
 //x=keyword index
 //remove from data
 function removeKeyword(x=0){
+    log('remove Keyword: '+x);
     var modal=document.getElementById('modal');
     var asin=modal.dataset.asin;
     var root=modal.dataset.root;
@@ -502,19 +560,24 @@ function renameModalKeywords(){
     
 }
 
+function openAsin(input){
+    
+}
 function asin(id){
+    $('#modal2').modal();
+    log('open asin modal: '+id);
     var base=document.getElementById('modal-roots');
-     log(base);
+    // log(base);
     var asin=document.getElementById(id).dataset.asin;
-    var modal=document.getElementById('asin');
-    show(modal);
+    var modal=document.getElementById('modal-asin');
+    //show(modal);
     document.getElementById('asin-asin').innerHTML= data[asin].asin;
     modal.dataset.asin= asin;
     //clear previous data
     var row= base.firstElementChild.firstElementChild.cloneNode(true);
     //log(row);
     //log(base.firstElementChild);
-    base.innerHTML="";
+    base.firstElementChild.innerHTML="";
     base.firstElementChild.append(row);
     //log(base);
     //add rows
@@ -526,16 +589,17 @@ function asin(id){
     }
 }
 function newRootRow(name="",i){
-    
+    log('new Root Row: '+i+'='+name);
     var base= document.getElementById('modal-roots').firstElementChild.lastElementChild.cloneNode(true);
-    log(base);
+    //ssssssssslog(base);
     base.dataset.root=i;
     base.innerHTML=name;
     //log(base);
     return base;
 }
 function closeASIN(){
-    hide(document.getElementById('asin'));
+    log('close ASIN');
+    $('#modal2').modal('hide');
 }
 /*send email*/
 /*var nodemailer = require('nodemailer');
@@ -562,39 +626,29 @@ transporter.sendMail(mailOptions, function(error, info){
     console.log('Email sent: ' + info.response);
   }
 });*/
-//hide element with css class
-function hide(e){
-    e.classList.add("Hide");
-}
-//show element with css class
-function show(e){
-    e.classList.remove("Hide");
-}
-//console.log message (multiple arguments gives multiple lines)
-function log(message){
-    var msg=message;
-    for (i = 1; i < arguments.length; i++) {
-        msg+="\n"+arguments[i];
-    }
-    console.log(msg);
-}
-//popup with timeout (default 1000)
-function message(msg, timeout=1000){
-    var notification = new Notification("Message", {body: msg});
-setTimeout(function() {notification.close()}, timeout);
-}
+
 function status(msg,code=0, time=1500){
     var status=document.getElementById("status");
-    status.classList.remove('button4');
-    status.classList.remove('button3');
-    status.classList.remove('button1');
-    
+    status.classList.remove('alert-light');
+    status.classList.remove('alert-danger');
+    status.classList.remove('alert-success');
+    status.classList.remove('alert-warning');
     status.innerHTML=msg;
-    status.classList.remove("Hide");
-    setTimeout(function(){status.classList.add("Hide");},time);
+//    status.classList.remove("Hide");
+    
     switch (code){
-        case 0: status.classList.add('button4');break;
-        case 1: status.classList.add('button3');break;
-        case 2: status.classList.add('button1');break;
-    }
+        case 0: status.classList.add('alert-light');break;
+        case 1: status.classList.add('alert-danger');break;
+        case 2: status.classList.add('alert-success');break;
+        case 3: status.classList.add('alert-warning');break;
+    };
+    setTimeout(function(){
+        switch (code){
+        case 0: status.classList.remove('alert-light');break;
+        case 1: status.classList.remove('alert-danger');break;
+        case 2: status.classList.remove('alert-success');break;
+        case 3: status.classList.remove('alert-warning');break;
+    };
+        status.innerHTML="";
+    },time);
 }

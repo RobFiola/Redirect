@@ -2,21 +2,24 @@ html, body{
     margin: 0;
     padding: 0;
 }
+.top{
+    
+    background-color: aliceblue;
+}
 #title{
     margin: 0;
     display: inline-block;
-    background-color: aliceblue;
     width:100%;
     padding: 0 2%;
     box-sizing: border-box;
     height: 8%;
+    line-height: 2em;
     font-size: 2em;
 }
 .btn-group{
-    display: inline-flex;
+    display: flex;
     margin: 0;
     height: 5%;
-    float: left;
     flex-direction: row;
     text-align: center;
 }
