@@ -1,59 +1,25 @@
 <!DOCTYPE html>
+<!--product12345.opendoordeals.com-->
 <html>
 <head>
+<!--Other option for direct forward (no tracking)-->
 <!--    <meta http-equiv="refresh" content="0; URL='https://amazon.com/s/ref=nb_sb_noss2?url=search-alias&field-keywords=armband&field-asin=98d'" />-->
+ 
+  <title>loading...</title>
+   <!--    send to server that user passed through this url-->
     
 </head>
 <body>
-    <a id="link" href="product12346.html">Continue</a>
-    
+    <a id="link" href="amazon.com" data-keyword="armband" hidden>Continue</a>
     <script>
-        var keywords=getQueryVariable('keywords');
-            console.log('keywords: '+keywords);
-        var asin=getQueryVariable('asin');
-            console.log('asin: '+asin);
-        var country=getQueryVariable('country');
-            console.log('country: '+country);
+        var currentPage= window.location.href;
+        var previousPage= document.referrer;
+        var keyword=document.getElementById('link').dataset.keyword;
+        /*sendToServer(keyword, previousPage, currentPage);*/
         
-        keywords=stringKeywords(keywords);
-        var link = "https://www.amazon.com";
-        if(keywords!=undefined && asin!=undefined)
-            link+="/s/ref=nb_sb_noss2?";
-        
-        if(keywords!=undefined)
-            link+="url=search-alias&field-keywords="+keywords;
-        if(asin!=undefined)
-            link+="&field-asin="+asin;
-        alert('redirect to: '+link);
-        
-        updateLink(link);// only use one of two
-        //redirect(link);// updateLink(for debugging) or redirect(for execution)
-        //console.log(window.location.hostname);
-        //console.log(window.location.pathname);
-        function redirect(a){
-            window.location.assign(a);
-        }
-        
-        function updateLink(a){
-            document.getElementById('link').setAttribute('href',link);
-        }
-        
-        //window.open(link,"_self");
-        function getQueryVariable(variable)//country
-        {    
-            var output;
-            var query=window.location.search.substring(1);
-            var vars=query.split('&');
-            for (var i=0;i<vars.length;i++){
-                var pair=vars[i].split('=');
-                if(pair[0]==variable){output=pair[1];}
-            }
-            return output;
-        }
-        function stringKeywords(string){
-            //add '+' between each word
-            return string;
-        }
+        window.location.replace('http://amazon.com');
+       
     </script>
+    <!--<script src="/server.js"></script>-->
 </body>
 </html>

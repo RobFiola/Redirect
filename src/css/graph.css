@@ -1,0 +1,41 @@
+body{
+    cursor: default;
+}
+#info>ul li{
+    
+}
+#info>li{
+    font-weight: 500;
+}
+#info{
+    font-size: 1rem;
+    display: inline;
+}
+#info ul{
+    
+}
+#info li{
+    list-style: none;
+}
+div.jumbotron{
+    padding-bottom: 0;
+}
+table{
+    font-size: 1.5rem;
+    line-height: 0.5rem;
+}
+thead{
+    background-color: gray;
+}
+tr{
+    
+}
+td{
+    
+}
+input{
+    border: none;
+}
+input:focus{
+    border: none;
+}

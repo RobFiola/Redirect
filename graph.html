@@ -1,0 +1,112 @@
+<html>
+    <head>
+       <title>Keyword Graph - Sub-URL</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+    <link rel="shortcut icon" href="src/images/favicon_amz.png" />
+      <link rel="stylesheet" href="src/css/graph.css">
+       
+
+    <!--BOOTSTRAP-->
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+    </head>
+    <body>
+        
+        <header>
+        
+      <!-- Fixed navbar -->
+      <nav class="navbar navbar-dark fixed-top bg-dark">
+       <a href="admin.html"><i class="fa fa-arrow-left"></i></a>
+        <a class="navbar-brand" href="#">Sub-URL</a>
+        <span></span>
+      </nav>
+    </header>
+    <div class="jumbotron"><a href="subs/Products/product12345.html"><h1 id='name' title="go to link">Subdomain</h1> </a>
+    <h5>download <span id='download'>log.CSV</span></h5>
+    <ul id='info' class="d-inline">
+    <li>ASIN: 
+        <span id='asin' class="">
+            <!--asin-->
+        </span>
+    </li>
+    <li>Root Subdomain: 
+        <span id='root'>
+            <!--root.path-->
+        </span>
+    </li>
+    <li>Redirects To: 
+        <span id='url'>
+            <!--url-->
+        </span>
+    </li>
+    <li>Users: 
+        <span id='users'>
+            
+        </span>
+    </li>
+    <li>Country: 
+        <span id='country'>
+            <!--country-->
+        </span>
+    </li>
+    
+    </ul></div>
+    <label for="">Keyword: </label>
+    <input type="text" value="" placeholder="Sort Keyword"> 
+    
+   <table class="table">
+    <thead class="table-head"><tr><td>Keyword</td><td>Total Clicks</td><td>Sources</td></tr></thead>
+    <tbody><tr><td>Running Armband</td><td>52</td><td>Facebook</td></tr></tbody>
+</table>
+
+
+<canvas id='myChart' class="my-4 w-100" width="900" height="300"></canvas>
+<!-- Graphs -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
+    <script>
+      var ctx = document.getElementById("myChart");
+        
+      var myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+          datasets: [{
+            data: [15339, 21345, 18483, 24003, 23489, 24092, 12034],
+            lineTension: 0,
+            backgroundColor: 'transparent',
+            borderColor: '#007bff',
+            borderWidth: 4,
+            pointBackgroundColor: '#007bff'
+          }]
+        },
+        options: {
+          scales: {
+            yAxes: [{
+              ticks: {
+                beginAtZero: false
+              }
+            }]
+          },
+          legend: {
+            display: false,
+          }
+        }
+      });
+        function getData(){
+            
+        }
+    </script>
+        <script src="src/js/ASIN.js"></script>
+         <script src="src/js/json.js"></script>
+
+    <script src="src/js/graph.js"></script>
+    </body>
+</html>
+     

@@ -72,3 +72,11 @@ function message(msg, timeout=1000){
     var notification = new Notification("Message", {body: msg});
 setTimeout(function() {notification.close()}, timeout);
 }
+function goto(dest){
+    $.get(dest).done(function () {
+  log("opening " +dest);
+        //window.location.assign(dest);
+}).fail(function () {
+   log(dest+" does not exist");
+});
+}

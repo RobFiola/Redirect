@@ -1,0 +1,110 @@
+<!--<!DOCTYPE html>-->
+<!--Sub.opendoordeals.com-->
+<html>
+<head>
+<!--<script src="https://requirejs.org/docs/release/2.3.5/minified/require.js"></script>-->
+<!--<script src="/src/js/aws-sdk.min.js"></script>-->
+<!--Other option for direct forward (no tracking)-->
+<script src="https://sdk.amazonaws.com/js/aws-sdk-2.286.2.min.js"></script>
+<!--    <meta http-equiv="refresh" content="0; URL='https://amazon.com/s/ref=nb_sb_noss2?url=search-alias&field-keywords=armband&field-asin=98d'" />-->
+ <script src="src/js/jquery-3.3.1.min.js"></script>
+  <title>loading...</title>
+   <!--    send to server that user passed through this url-->
+    
+</head>
+<body>
+    <!--<a id="link" href="amazon.com" hidden>Continue</a>-->
+    
+    <script>
+        var url=document.URL;//opendoordeals.com/Subs.html?route=noc1
+        //var sub=url.search.substring(url.search.search('=')+1,url.search.length)
+        //var sub=url.hostname.split('.')[0];//noc1.opendoordeals.com/Subs.html
+        var sub='noc1';
+        // Configure AWS SDK for JavaScript
+   /*AWS.config.update({region: 'us-west-2'});
+   AWS.config.credentials = new AWS.CognitoIdentityCredentials({IdentityPoolId: 'us-west-2_RsSO9TUmr'});
+        var results;
+    var lambda = new AWS.Lambda({region: 'us-west-2', apiVersion: '2018-08-01'});
+        
+    var pullParams = {
+      FunctionName : 'recordClick',
+      InvocationType : 'RequestResponse',
+      LogType : 'None'
+   };
+        lambda.invoke(pullParams, function(err, data) {
+         if (err) {
+            prompt(err);
+         } else {
+            results = JSON.parse(data.Payload);
+            completeRequest();
+         }
+      });	*/
+        var config;
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+               // Typical action to be performed when the document is ready:
+               config=JSON.parse(xhttp.responseText);
+                sendToServer(config.KEYWORD, config.SUBDOMAIN, config.ASIN, document.referrer, window.location.href );
+            }
+        };
+        
+        xhttp.open("GET", 'subs/'+sub+'_config.json', 'utf8', true);
+        xhttp.send();
+        /*var fs = require('fs');*/
+/*
+        var url=window.location.href.split('.');
+*/
+        /*var sub=url[0];
+        console.log(sub);*/
+       // var sub='noc1';/*document.location.origin;*/
+        //Read config values from a JSON file.
+        /*var config = fs.readFileSync('./'+sub+'_config.json', 'utf8');
+        config = JSON.parse(config);*/
+        //var currentPage= window.location.href;
+        //var previousPage= document.referrer;
+        /*var keyword=document.getElementById('link').dataset.keyword;*/
+        //console.log(config.LINK);
+        
+        
+        function completeRequest(){
+            /*window.location.replace(config.LINK);*/
+            //console.log(config.LINK);
+            console.log('success');
+        }
+        function sendToServer(keywordSubmitted="", subdomain="", asin="", prevSubmitted="", currSubmitted="") {
+        $.ajax({
+            method: 'POST',
+            url: 'https://ijb1s3xepk.execute-api.us-west-2.amazonaws.com/prod',
+            headers:{'Content-Type':'application/json',
+                     'X-Amz-Date':Date.now(),
+                     //'Authorization':'',
+                     'X-Api-Key':'mwl2L5meDI8GpmbOgxfAf6CXxr9s2eOX4csv31ZM',
+                     //'X-Amz-Security-Token':'',
+                     'Access-Control-Allow-Origin':'*'},
+            
+            data: JSON.stringify( {
+                    id:Date.now(), 
+                    keyword:{'S': keywordSubmitted},
+                    date: {'S': new Date().toDateString()},
+                    time: {'S': new Date().toTimeString()},
+                    subdomain: {'S': subdomain},
+                    asin: {'S': asin},
+                    previous: {'S': prevSubmitted},
+                    url: {'S': currSubmitted}/**/
+                }),
+            
+            
+            success: completeRequest,
+            error: function ajaxError(jqXHR, textStatus, errorThrown) {
+                /*console.error('Error requesting: ', textStatus, ', Details: ', errorThrown);
+                console.error('Response: ', jqXHR.responseText);*/
+                //alert('' + jqXHR.responseText);
+            }
+        });
+    }
+        
+    </script>
+    <!--<script src="./server.js"></script>-->
+</body>
+</html>

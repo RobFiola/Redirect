@@ -1,0 +1,4 @@
+{ 
+  "AWS_REGION": "us-west-2",
+  "STARTUP_TABLE": "Clicks"
+}

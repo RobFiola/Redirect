@@ -1,5 +1,741 @@
 [
-  {
+   {
+      "asin": "B0168XJ0RG",
+      "url": "",
+      "root": [
+         {
+            "name": "0RG1",
+            "path": "",
+            "keywords": [
+               {
+                  "name": "",
+                  "link": "",
+                  "clicks": [
+                     0
+                  ],
+                  "max_clicks": 0
+               }
+            ],
+            "users": [],
+            "country": "US",
+             "notes":""
+         }
+      ]
+   },
+   {
+      "asin": "B07F1T18C9",
+      "url": "",
+      "root": [
+         {
+            "name": "8C91",
+            "path": "",
+            "keywords": [
+               {
+                  "name": "",
+                  "link": "",
+                  "clicks": [
+                     0
+                  ],
+                  "max_clicks": 0
+               }
+            ],
+            "users": [],
+            "country": "US",
+             "notes":""
+         }
+      ]
+   },
+   {
+      "asin": "B07DP6WLQ5",
+      "url": "",
+      "root": [
+         {
+            "name": "LQ51",
+            "path": "",
+            "keywords": [
+               {
+                  "name": "",
+                  "link": "",
+                  "clicks": [
+                     0
+                  ],
+                  "max_clicks": 0
+               }
+            ],
+            "users": [],
+            "country": "US",
+             "notes":""
+         }
+      ]
+   },
+   {
+      "asin": "B07DNGR2VG",
+      "url": "",
+      "root": [
+         {
+            "name": "2VG1",
+            "path": "",
+            "keywords": [
+               {
+                  "name": "",
+                  "link": "",
+                  "clicks": [
+                     0
+                  ],
+                  "max_clicks": 0
+               }
+            ],
+            "users": [],
+            "country": "US",
+             "notes":""
+         }
+      ]
+   },
+   {
+      "asin": "B07D7F5LNH",
+      "url": "",
+      "root": [
+         {
+            "name": "LNH1",
+            "path": "",
+            "keywords": [
+               {
+                  "name": "",
+                  "link": "",
+                  "clicks": [
+                     0
+                  ],
+                  "max_clicks": 0
+               }
+            ],
+            "users": [],
+            "country": "US",
+             "notes":""
+         }
+      ]
+   },
+   {
+      "asin": "B07D2M2TFG",
+      "url": "",
+      "root": [
+         {
+            "name": "TFG1",
+            "path": "",
+            "keywords": [
+               {
+                  "name": "",
+                  "link": "",
+                  "clicks": [
+                     0
+                  ],
+                  "max_clicks": 0
+               }
+            ],
+            "users": [],
+            "country": "US",
+             "notes":""
+         }
+      ]
+   },
+   {
+      "asin": "B07B9K21WT",
+      "url": "",
+      "root": [
+         {
+            "name": "1WT1",
+            "path": "",
+            "keywords": [
+               {
+                  "name": "",
+                  "link": "",
+                  "clicks": [
+                     0
+                  ],
+                  "max_clicks": 0
+               }
+            ],
+            "users": [],
+            "country": "US",
+             "notes":""
+         }
+      ]
+   },
+   {
+      "asin": "B079G7XD6J",
+      "url": "",
+      "root": [
+         {
+            "name": "D6J1",
+            "path": "",
+            "keywords": [
+               {
+                  "name": "",
+                  "link": "",
+                  "clicks": [
+                     0
+                  ],
+                  "max_clicks": 0
+               }
+            ],
+            "users": [],
+            "country": "US",
+             "notes":""
+         }
+      ]
+   },
+   {
+      "asin": "B079C37LZG",
+      "url": "",
+      "root": [
+         {
+            "name": "LZG1",
+            "path": "",
+            "keywords": [
+               {
+                  "name": "",
+                  "link": "",
+                  "clicks": [
+                     0
+                  ],
+                  "max_clicks": 0
+               }
+            ],
+            "users": [],
+            "country": "US",
+             "notes":""
+         }
+      ]
+   },
+   {
+      "asin": "B078Y6NF5D",
+      "url": "",
+      "root": [
+         {
+            "name": "F5D1",
+            "path": "",
+            "keywords": [
+               {
+                  "name": "",
+                  "link": "",
+                  "clicks": [
+                     0
+                  ],
+                  "max_clicks": 0
+               }
+            ],
+            "users": [],
+            "country": "US",
+             "notes":""
+         }
+      ]
+   },
+   {
+      "asin": "B078GYN3NF",
+      "url": "",
+      "root": [
+         {
+            "name": "3NF1",
+            "path": "",
+            "keywords": [
+               {
+                  "name": "",
+                  "link": "",
+                  "clicks": [
+                     0
+                  ],
+                  "max_clicks": 0
+               }
+            ],
+            "users": [],
+            "country": "US",
+             "notes":""
+         }
+      ]
+   },
+   {
+      "asin": "B076H4JKXM",
+      "url": "",
+      "root": [
+         {
+            "name": "KXM1",
+            "path": "",
+            "keywords": [
+               {
+                  "name": "",
+                  "link": "",
+                  "clicks": [
+                     0
+                  ],
+                  "max_clicks": 0
+               }
+            ],
+            "users": [],
+            "country": "US",
+             "notes":""
+         }
+      ]
+   },
+   {
+      "asin": "B075771B7Q",
+      "url": "",
+      "root": [
+         {
+            "name": "B7Q1",
+            "path": "",
+            "keywords": [
+               {
+                  "name": "",
+                  "link": "",
+                  "clicks": [
+                     0
+                  ],
+                  "max_clicks": 0
+               }
+            ],
+            "users": [],
+            "country": "US",
+             "notes":""
+         }
+      ]
+   },
+   {
+      "asin": "B074XDK9N3",
+      "url": "",
+      "root": [
+         {
+            "name": "9N31",
+            "path": "",
+            "keywords": [
+               {
+                  "name": "",
+                  "link": "",
+                  "clicks": [
+                     0
+                  ],
+                  "max_clicks": 0
+               }
+            ],
+            "users": [],
+            "country": "US",
+             "notes":""
+         }
+      ]
+   },
+   {
+      "asin": "B074JJ7N4K",
+      "url": "",
+      "root": [
+         {
+            "name": "N4K1",
+            "path": "",
+            "keywords": [
+               {
+                  "name": "",
+                  "link": "",
+                  "clicks": [
+                     0
+                  ],
+                  "max_clicks": 0
+               }
+            ],
+            "users": [],
+            "country": "US",
+             "notes":""
+         }
+      ]
+   },
+   {
+      "asin": "B074HNMQK2",
+      "url": "",
+      "root": [
+         {
+            "name": "QK21",
+            "path": "",
+            "keywords": [
+               {
+                  "name": "",
+                  "link": "",
+                  "clicks": [
+                     0
+                  ],
+                  "max_clicks": 0
+               }
+            ],
+            "users": [],
+            "country": "US",
+             "notes":""
+         }
+      ]
+   },
+   {
+      "asin": "B074G2Z5J5",
+      "url": "",
+      "root": [
+         {
+            "name": "5J51",
+            "path": "",
+            "keywords": [
+               {
+                  "name": "",
+                  "link": "",
+                  "clicks": [
+                     0
+                  ],
+                  "max_clicks": 0
+               }
+            ],
+            "users": [],
+            "country": "US",
+             "notes":""
+         }
+      ]
+   },
+   {
+      "asin": "B073HFMNFK",
+      "url": "",
+      "root": [
+         {
+            "name": "NFK1",
+            "path": "",
+            "keywords": [
+               {
+                  "name": "",
+                  "link": "",
+                  "clicks": [
+                     0
+                  ],
+                  "max_clicks": 0
+               }
+            ],
+            "users": [],
+            "country": "US",
+             "notes":""
+         }
+      ]
+   },
+   {
+      "asin": "B073HF15ZY",
+      "url": "",
+      "root": [
+         {
+            "name": "5ZY1",
+            "path": "",
+            "keywords": [
+               {
+                  "name": "",
+                  "link": "",
+                  "clicks": [
+                     0
+                  ],
+                  "max_clicks": 0
+               }
+            ],
+            "users": [],
+            "country": "US",
+             "notes":""
+         }
+      ]
+   },
+   {
+      "asin": "B0728P1R9W",
+      "url": "",
+      "root": [
+         {
+            "name": "R9W1",
+            "path": "",
+            "keywords": [
+               {
+                  "name": "",
+                  "link": "",
+                  "clicks": [
+                     0
+                  ],
+                  "max_clicks": 0
+               }
+            ],
+            "users": [],
+            "country": "US",
+             "notes":""
+         }
+      ]
+   },
+   {
+      "asin": "B071NF198D",
+      "url": "",
+      "root": [
+         {
+            "name": "98D1",
+            "path": "",
+            "keywords": [
+               {
+                  "name": "",
+                  "link": "",
+                  "clicks": [
+                     0
+                  ],
+                  "max_clicks": 0
+               }
+            ],
+            "users": [],
+            "country": "US",
+             "notes":""
+         }
+      ]
+   },
+   {
+      "asin": "B06Y3NWSR2",
+      "url": "",
+      "root": [
+         {
+            "name": "SR21",
+            "path": "",
+            "keywords": [
+               {
+                  "name": "",
+                  "link": "",
+                  "clicks": [
+                     0
+                  ],
+                  "max_clicks": 0
+               }
+            ],
+            "users": [],
+            "country": "US",
+             "notes":""
+         }
+      ]
+   },
+   {
+      "asin": "B06Y17GT5D",
+      "url": "",
+      "root": [
+         {
+            "name": "T5D1",
+            "path": "",
+            "keywords": [
+               {
+                  "name": "",
+                  "link": "",
+                  "clicks": [
+                     0
+                  ],
+                  "max_clicks": 0
+               }
+            ],
+            "users": [],
+            "country": "US",
+             "notes":""
+         }
+      ]
+   },
+   {
+      "asin": "B01N33XQZ6",
+      "url": "",
+      "root": [
+         {
+            "name": "QZ61",
+            "path": "",
+            "keywords": [
+               {
+                  "name": "",
+                  "link": "",
+                  "clicks": [
+                     0
+                  ],
+                  "max_clicks": 0
+               }
+            ],
+            "users": [],
+            "country": "US",
+             "notes":""
+         }
+      ]
+   },
+   {
+      "asin": "B01MT898XK",
+      "url": "",
+      "root": [
+         {
+            "name": "8XK1",
+            "path": "",
+            "keywords": [
+               {
+                  "name": "",
+                  "link": "",
+                  "clicks": [
+                     0
+                  ],
+                  "max_clicks": 0
+               }
+            ],
+            "users": [],
+            "country": "US",
+             "notes":""
+         }
+      ]
+   },
+   {
+      "asin": "B01MSDSS1C",
+      "url": "",
+      "root": [
+         {
+            "name": "S1C1",
+            "path": "",
+            "keywords": [
+               {
+                  "name": "",
+                  "link": "",
+                  "clicks": [
+                     0
+                  ],
+                  "max_clicks": 0
+               }
+            ],
+            "users": [],
+            "country": "US",
+             "notes":""
+         }
+      ]
+   },
+   {
+      "asin": "B01MPZJM51",
+      "url": "",
+      "root": [
+         {
+            "name": "M511",
+            "path": "",
+            "keywords": [
+               {
+                  "name": "",
+                  "link": "",
+                  "clicks": [
+                     0
+                  ],
+                  "max_clicks": 0
+               }
+            ],
+            "users": [],
+            "country": "US",
+             "notes":""
+         }
+      ]
+   },
+   {
+      "asin": "B01FEAI1TC",
+      "url": "",
+      "root": [
+         {
+            "name": "1TC1",
+            "path": "",
+            "keywords": [
+               {
+                  "name": "",
+                  "link": "",
+                  "clicks": [
+                     0
+                  ],
+                  "max_clicks": 0
+               }
+            ],
+            "users": [],
+            "country": "US",
+             "notes":""
+         }
+      ]
+   },
+   {
+      "asin": "B01F5PCGGK",
+      "url": "",
+      "root": [
+         {
+            "name": "GGK1",
+            "path": "",
+            "keywords": [
+               {
+                  "name": "",
+                  "link": "",
+                  "clicks": [
+                     0
+                  ],
+                  "max_clicks": 0
+               }
+            ],
+            "users": [],
+            "country": "US",
+             "notes":""
+         }
+      ]
+   },
+   {
+      "asin": "B01F5PCAC0",
+      "url": "",
+      "root": [
+         {
+            "name": "AC01",
+            "path": "",
+            "keywords": [
+               {
+                  "name": "",
+                  "link": "",
+                  "clicks": [
+                     0
+                  ],
+                  "max_clicks": 0
+               }
+            ],
+            "users": [],
+            "country": "US",
+             "notes":""
+         }
+      ]
+   },
+   {
+      "asin": "B01F5PC2H8",
+      "url": "",
+      "root": [
+         {
+            "name": "2H81",
+            "path": "",
+            "keywords": [
+               {
+                  "name": "",
+                  "link": "",
+                  "clicks": [
+                     0
+                  ],
+                  "max_clicks": 0
+               }
+            ],
+            "users": [],
+            "country": "US",
+             "notes":""
+         }
+      ]
+   },
+   {
+      "asin": "B01F5PBV52",
+      "url": "",
+      "root": [
+         {
+            "name": "V521",
+            "path": "",
+            "keywords": [
+               {
+                  "name": "",
+                  "link": "",
+                  "clicks": [
+                     0
+                  ],
+                  "max_clicks": 0
+               }
+            ],
+            "users": [],
+            "country": "US",
+             "notes":""
+         }
+      ]
+   },
+   {
     "asin": "B01ENN5NOC",
     "url": "https://www.amazon.com/Sports-Armband-Exercise-Running-Workout/dp/B01ENN5NOC/ref=sr_1_3",
     "root": [
@@ -9,21 +745,23 @@
         "keywords": [
           {
             "name": "running+armband",
-            "link": "https://amazon.com",
-            "clicks": 0,
+            "link": "https://amazon.com/s/ref=nb_sb_noss2?url=search-alias&field-keywords=running+arband&field-asin=B01ENN5NOC",
+            "clicks": [0],
             "max_clicks": 10
           },
           {
             "name": "cellphone+armband",
-            "link": "https://amazon.com",
-            "clicks": 0,
+            "link": "https://amazon.com/s/ref=nb_sb_noss2?url=search-alias&field-keywords=cellphone+armband&field-asin=B01ENN5NOC",
+            "clicks": [0],
             "max_clicks": 10
           }
         ],
         "users": [
           "Robert",
           "Brady"
-        ]
+        ],
+          "country": "US",
+          "notes":""
       },
       {
         "name": "NOC2",
@@ -31,24 +769,72 @@
         "keywords": [
           {
             "name": "cellphone+armband",
-            "link": "https://amazon.com",
-            "clicks": 0,
+            "link": "https://amazon.com/s/ref=nb_sb_noss2?url=search-alias&field-keywords=cellphone+armband&field-asin=B01ENN5NOC",
+            "clicks": [0],
             "max_clicks": 10
           },
           {
             "name": "running+armband",
-            "link": "https://amazon.com",
-            "clicks": 0,
+            "link": "https://amazon.com/s/ref=nb_sb_noss2?url=search-alias&field-keywords=running+arband&field-asin=B01ENN5NOC",
+            "clicks": [0],
             "max_clicks": 10
           }
         ],
         "users": [
           "Justin"
-        ]
+        ],
+          "country": "CA",
+          "notes":""
       }
     ]
   },
-  {
+   {
+      "asin": "B01E9BDZQ6",
+      "url": "",
+      "root": [
+         {
+            "name": "ZQ61",
+            "path": "",
+            "keywords": [
+               {
+                  "name": "",
+                  "link": "",
+                  "clicks": [
+                     0
+                  ],
+                  "max_clicks": 0
+               }
+            ],
+            "users": [],
+            "country": "US",
+             "notes":""
+         }
+      ]
+   },
+   {
+      "asin": "B01C7PYHF4",
+      "url": "",
+      "root": [
+         {
+            "name": "HF41",
+            "path": "",
+            "keywords": [
+               {
+                  "name": "",
+                  "link": "",
+                  "clicks": [
+                     0
+                  ],
+                  "max_clicks": 0
+               }
+            ],
+            "users": [],
+            "country": "US",
+             "notes":""
+         }
+      ]
+   },
+   {
     "asin": "B01692ZJYY",
     "url": "https://www.amazon.com/Cell-Phone-Armband-Sweatproof-Protective/dp/B01692ZJYY",
     "root": [
@@ -59,20 +845,22 @@
           {
             "name": "iphone+armband",
             "link": "https://amazon.com",
-            "clicks": 0,
+            "clicks": [0],
             "max_clicks": 10
           },
           {
             "name": "running+armband",
             "link": "https://amazon.com",
-            "clicks": 0,
+            "clicks": [0],
             "max_clicks": 10
           }
         ],
         "users": [
           "JR",
           "Keith"
-        ]
+        ],
+          "country": "UK",
+          "notes":""
       }
     ]
   }

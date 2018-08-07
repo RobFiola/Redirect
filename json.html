@@ -1,13 +1,26 @@
 
 <html>
     <head>
+       <title></title>
         <link rel="stylesheet" type="text/css" href="src/css/json.css">
 <!--        <script src="https://code.jquery.com/jquery-1.10.2.js"></script>-->
         <script>
             var input;
             var myJSON;
-            var filepath="src/js/redirects.json";
             var xmlhttp;
+            var url=new URL(document.URL);
+            var path="src/js/";
+            var file;
+            var filepath;
+            console.log();
+            if(url.search){
+                file=url.search.split("=",)[1]
+                filepath=path+file;
+                console.log(filepath);
+                
+            }else
+             filepath="";
+            
             function openJSON(file=filepath){
                 xmlhttp = new XMLHttpRequest();
                 xmlhttp.onreadystatechange = function() {
@@ -20,10 +33,11 @@
                     
                     }
                 };
-                xmlhttp.open("GET", file, true);
+                xmlhttp.open("GET", filepath, true);
                 xmlhttp.send();
                 return input;
             }
+            
             function save(file=filepath){
                 input=document.getElementById('json').value;
                 //using PUT method - doesnt work offline
@@ -66,8 +80,8 @@
        </div>
         <textarea name="JSON_file" id="json" cols="100" ></textarea>
         <script>
-            
-            document.getElementById('title').innerHTML=document.location.pathname;
+            document.title=file;
+            document.getElementById('title').textContent=file;
             openJSON();
             //console.log(input);
          if(!input)
