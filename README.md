@@ -1,6 +1,6 @@
 # Redirect
-automate influencer traffic
-<a href="https://512944b0529b4f93acb3185bcd50965d.vfs.cloud9.us-west-2.amazonaws.com/route/noc1">Test</a>
+<p>automate influencer traffic</p>
+
 Goal -> Create system for automatically directing traffic to interchangeable links
 
 focused on Amazon super-urls
