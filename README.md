@@ -1,6 +1,6 @@
 # Redirect
 automate influencer traffic
-<a href="http://opendoordeals.com/route/noc">Test</a>
+<a href="http://opendoordeals.com/route/noc1">Test</a>
 Goal -> Create system for automatically directing traffic to interchangeable links
 
 focused on Amazon super-urls
